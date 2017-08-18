@@ -2,7 +2,7 @@ import * as types from './types';
 import { NavigationActions } from 'react-navigation';
 
 export const login = (username, password) => {
-  if(username == "pooh" && password == "12345"){
+  if(username == "1" && password == "1"){
     // console.log("inside");
     return {
       type: types.LOGIN,

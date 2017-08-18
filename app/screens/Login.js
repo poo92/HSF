@@ -8,7 +8,6 @@ import { Container } from '../components/container';
 import { Logo } from '../components/logo';
 import { TextInput } from '../components/textInput';
 import { Button } from '../components/button';
-import { Header } from '../components/homePageHeader';
 
 
 import { login } from '../actions/auth.js';
@@ -71,7 +70,6 @@ class Login extends Component{
       return (
         <Container>
           <StatusBar translucent={false} barStyle="light-content" />
-          <Header />
           <Logo />
           <KeyboardAvoidingView behavior="padding" >
             <TextInput
