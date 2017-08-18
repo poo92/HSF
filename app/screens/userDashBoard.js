@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Header } from '../components/homePageHeader';
-import { HomePageContainer } from '../components/container/appPagesContainer';
+import { PageContainer } from '../components/containers/appPagesContainer';
 // import { Header } from '../components/button';
 // import { Logo } from '../components/logo';
 
@@ -22,12 +22,12 @@ class  userDashBoard extends Component {
 
   render() {
     return(
-      <HomePageContainer>
+      <PageContainer>
       <Header />
       <TouchableHighlight onPress= {this.goback}>
         <Text> go back</Text>
       </TouchableHighlight>
-      </HomePageContainer>
+      </PageContainer>
     );
   }
 }

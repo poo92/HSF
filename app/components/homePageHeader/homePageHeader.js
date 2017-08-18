@@ -25,6 +25,7 @@ const homePageHeader = () => {
     return(
       <View style={Styles.container}>
         <Text style={Styles.title}>Hitech Smart Factory</Text>
+        <Text style={Styles.titleFactoryName}>CocaCola (PVT) Ltd</Text>
       </View>
 
     )

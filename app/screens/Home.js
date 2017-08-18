@@ -3,7 +3,7 @@ import { StatusBar, KeyboardAvoidingView, TouchableHighlight, Text, View } from 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Container } from '../components/container';
+
 import Login from '../screens/Login';
 import userDashBoard from '../screens/userDashBoard';
 

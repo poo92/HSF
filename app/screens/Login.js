@@ -4,7 +4,7 @@ import { StatusBar, KeyboardAvoidingView, TouchableHighlight, Text } from 'react
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Container } from '../components/container';
+import { LoginPageContainer } from '../components/containers/loginPageContainer';
 import { Logo } from '../components/logo';
 import { TextInput } from '../components/textInput';
 import { Button } from '../components/button';
@@ -68,7 +68,7 @@ class Login extends Component{
     //
     // }else{
       return (
-        <Container>
+        <LoginPageContainer>
           <StatusBar translucent={false} barStyle="light-content" />
           <Logo />
           <KeyboardAvoidingView behavior="padding" >
@@ -85,7 +85,7 @@ class Login extends Component{
 
             <Button title={"Login"} onpress={ () => this.handlelogin() } />
           </KeyboardAvoidingView>
-        </Container>
+        </LoginPageContainer>
       );
     // }
 
