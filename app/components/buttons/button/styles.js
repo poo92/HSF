@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import * as GlobalStyles from '../../../config/GlobalStyles';
 
 
 const width = Dimensions.get('window').width;
@@ -6,7 +7,7 @@ const width = Dimensions.get('window').width;
 
 
 let fontSize, buttonWidth;
-if (width < 1000){
+if (width < GlobalStyles.SCREEN_SIZE){
    fontSize =  width / 25 ;
    buttonWidth = width / 4; ;
 }else{

@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions, PixelRatio } from 'react-native';
+import * as GlobalStyles from '../../config/GlobalStyles';
 
 
 
@@ -8,7 +9,7 @@ const width = Dimensions.get('window').width;
 // console.log("width    " + width );
 
 let fontSize, imageWidth;
-if (width < 1000){
+if (width < GlobalStyles.SCREEN_SIZE){
   fontSize =  width / 15 ;
   imageWidth = width / 3 ;
 }else{

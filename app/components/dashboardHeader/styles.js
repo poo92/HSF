@@ -1,4 +1,5 @@
 import {Platform, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import * as GlobalStyles from '../../config/GlobalStyles';
 
 
 const width = Dimensions.get('window').width;
@@ -7,7 +8,7 @@ const height = Dimensions.get('window').height;
 // let fontSize = width / 20;
 
 let fontSize, textInputWidth,headerHeight;
-if (width < 1000){
+if (width < GlobalStyles.SCREEN_SIZE){
   fontSize =  width / 20 ;
   textInputWidth = width / 3;
   headerHeight = height /12;
