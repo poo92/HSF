@@ -42,10 +42,6 @@ class Login extends Component{
     this.setState({ password: text })
   };
 
-  getlist() {
-    console.log("inside get list");
-    this.props.navigation.navigate('userDashBoard');
-  };
 
   componentWillReceiveProps(nextProps) {
     console.log("inside get list" + nextProps.isLoggedIn);
@@ -58,15 +54,7 @@ class Login extends Component{
   }
 
   render () {
-    // if(this.props.isLoggedIn){
-    //   return(
-    //     <TouchableHighlight onPress={ this.getlist()}>
-    //       <Text></Text>
-    //     </TouchableHighlight>
-    //
-    //   );
-    //
-    // }else{
+
       return (
         <LoginPageContainer>
           <StatusBar translucent={false} barStyle="light-content" />

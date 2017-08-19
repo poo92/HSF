@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 
 import Login from '../screens/Login';
-import userDashBoard from '../screens/userDashBoard';
+import userDashBoard from '../screens/DashBoard';
 
 class Home extends Component{
   static propTypes = {

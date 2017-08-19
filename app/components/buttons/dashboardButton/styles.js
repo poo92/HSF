@@ -2,16 +2,17 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 
-
-let fontSize, buttonWidth;
+let fontSize, buttonHeight;
 if (width < 1000){
    fontSize =  width / 25 ;
-   buttonWidth = width / 4; ;
+   buttonHeight = height / 18;
+
 }else{
-  fontSize =  width / 60 ;
-  buttonWidth = width / 7  ;
+  fontSize =  width / 70 ;
+  buttonHeight = height / 20;
 }
 
 
@@ -22,17 +23,16 @@ const Styles = StyleSheet.create({
 
   },
   button: {
-   height:40,
-   width:buttonWidth,
-   borderRadius:5,
+   width:width,
+   height : buttonHeight,
    backgroundColor:'#3399ff',
    justifyContent: 'center',
    marginTop:10,
  },
  buttonText: {
- textAlign: 'center',
- fontSize:fontSize,
- fontWeight: '500',
+ textAlign: 'left',
+ // fontSize:fontSize,
+ fontWeight: '400',
  color:"black",
 
 },
