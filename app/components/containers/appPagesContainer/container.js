@@ -1,3 +1,5 @@
+// container for pages of the app
+
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';

@@ -1,3 +1,4 @@
+//common  buttton component       params-button title , onPressaction
 import React from 'react';
 import { View , TouchableHighlight , Text} from 'react-native';
 import Styles from './styles';

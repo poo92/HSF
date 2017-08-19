@@ -1,3 +1,4 @@
+// navigation paths
 import { StackNavigator } from 'react-navigation';
 import { StatusBar, Platform } from 'react-native';
 import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';

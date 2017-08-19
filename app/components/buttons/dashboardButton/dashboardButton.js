@@ -1,3 +1,5 @@
+// dashboard button( branch,section,productionlines)             params-button title , onPressaction
+// different styling than button
 import React from 'react';
 import { View , TouchableHighlight , Text} from 'react-native';
 import Styles from './styles';

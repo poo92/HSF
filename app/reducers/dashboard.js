@@ -1,4 +1,5 @@
-import * as types from '../actions/types';
+// dashboard reducer
+import * as types from '../actions/types'; // action types from types.js file
 
 
 

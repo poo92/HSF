@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { LoginPageContainer } from '../components/containers/loginPageContainer';
 import { Logo } from '../components/logo';
 import { TextInput } from '../components/textInput';
-import { Button } from '../components/button';
+import { Button } from '../components/buttons/button';
 
 
 import { login } from '../actions/auth.js';

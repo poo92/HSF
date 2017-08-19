@@ -1,3 +1,4 @@
+// section list screen
 import React, { Component } from 'react';
 import { TouchableHighlight, Text, View } from 'react-native';
 import PropTypes from 'prop-types';

@@ -1,8 +1,4 @@
-/**
-* Sample React Native App
-* https://github.com/facebook/react-native
-* @flow
-*/
+// entry point of the app
 
 import React, { Component } from 'react';
 import { AppRegistry,  StyleSheet,  Text,  View} from 'react-native';

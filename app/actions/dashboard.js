@@ -1,8 +1,10 @@
-import * as types from './types';
+// contains methods related to dashboard
+import * as types from './types'; // action types from types.js file
 
 
-
-export const getHomePageDetails = () => {
+// method to get dashboard details of user
+export const getDashboardDetails = () => {
+  // sample json
   let homePageDetails = [
         {
           "id": "Colombo",

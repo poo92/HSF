@@ -1,3 +1,5 @@
+// navigation reducer
+
 import { NavigationActions } from 'react-navigation';
 import Navigator from '../config/routes';
 

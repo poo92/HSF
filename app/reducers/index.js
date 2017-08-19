@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import  nav from './nav';
 import  auth from './auth';
-import  homePage from './homePage';
+import  dashboard from './dashboard';
 
 
 const rootReducer = combineReducers({
     nav,
     auth,
-    homePage,
+    dashboard,
 
 });
 

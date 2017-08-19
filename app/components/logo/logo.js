@@ -1,3 +1,4 @@
+// logo of the login page image and the title
 import React, { Component } from 'react';
 import { View , Image , Text, Keyboard } from 'react-native';
 import Styles from './styles';

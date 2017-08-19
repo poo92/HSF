@@ -1,8 +1,10 @@
-import * as types from './types';
+// contains all the actions regarding user authentication
+
+import * as types from './types'; // action types from types.js file
 
 
 
-// actual method
+// actual login method
 // export const login = (username, password) => {
 //   if(username == "1" && password == "1"){
 //     // console.log("inside");
@@ -26,7 +28,7 @@ import * as types from './types';
 //
 // };
 
-// dev test login method
+//  test login method for development
 export const login = (username, password) => {
     return {
       type: types.LOGIN,
@@ -35,3 +37,16 @@ export const login = (username, password) => {
     };
 
 };
+
+
+
+//fetch method
+// return fetch('https://facebook.github.io/react-native/movies.json')
+//   .then((response) => response.json())
+//   .then((responseJson) => {
+//     return responseJson.movies;
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+// }

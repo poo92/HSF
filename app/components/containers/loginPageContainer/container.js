@@ -1,3 +1,4 @@
+// container for thr login page 
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';

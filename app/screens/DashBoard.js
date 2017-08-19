@@ -1,3 +1,4 @@
+// dashboard of the logged user
 import React, { Component} from 'react';
 import { View, Text, FlatList, TouchableHighlight, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
@@ -8,7 +9,7 @@ import { PageContainer } from '../components/containers/appPagesContainer';
 import { SecctionTitlle } from '../components/titles/sectionTitle';
 import { DashboardButton } from '../components/buttons/dashboardButton'
 
-import { getHomePageDetails } from '../actions/homePage.js';
+import { getDashboardDetails } from '../actions/dashboard.js';
 
 class  userDashBoard extends Component {
   // constructor(props){
@@ -36,7 +37,7 @@ class  userDashBoard extends Component {
 
 
   componentWillMount(){
-    this.props.dispatch(getHomePageDetails());
+    this.props.dispatch(getDashboardDetails());
   }
 
 
@@ -78,7 +79,7 @@ class  userDashBoard extends Component {
 const mapStateToProps =  (state)  => {
   return{
     username : state.auth.username,
-    homepagedetails : state.homePage.homePageDetails,
+    homepagedetails : state.dashboard.homePageDetails,
   };
 };
 
