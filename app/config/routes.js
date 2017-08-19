@@ -1,5 +1,7 @@
 import { StackNavigator } from 'react-navigation';
 import { StatusBar, Platform } from 'react-native';
+import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';
+
 
 import Home from '../screens/Home';
 import Login from '../screens/Login';
@@ -25,7 +27,7 @@ const userDashBoardStack = StackNavigator(
   ProductionLines:{
     screen: ProductionLines,
     navigationOptions: ({navigation}) => ({
-    title: (Platform.OS === 'ios') ? '' : 'Branches',
+    title: (Platform.OS === 'ios') ? '' : 'Sections',
     headerStyle: {height: 30, backgroundColor:'#004080'},
   })
   },
@@ -33,7 +35,8 @@ const userDashBoardStack = StackNavigator(
 },
 {
   // cardStyle: { paddingTop: StatusBar.currentHeight},
-  headerMode: 'screen',
+  headerMode: 'float',
+  transitionConfig: getSlideFromRightTransition
 }
 );
 
@@ -61,5 +64,7 @@ export default StackNavigator(
 {
   // cardStyle: { paddingTop: StatusBar.currentHeight},
   headerMode: 'none',
+  transitionConfig: getSlideFromRightTransition
+
 }
 );

@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableHighlight, ActivityIndicator } from 'rea
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Header } from '../components/homePageHeader';
+import { DashboardHeader } from '../components/dashboardHeader';
 import { PageContainer } from '../components/containers/appPagesContainer';
 import { SecctionTitlle } from '../components/titles/sectionTitle';
 import { DashboardButton } from '../components/buttons/dashboardButton'
@@ -55,7 +55,7 @@ class  userDashBoard extends Component {
     }else{
       return(
         <PageContainer>
-          <Header />
+          <DashboardHeader  factoryName= {"CocaCola PVT Ltd"} />
           <SecctionTitlle titleText={ "Branches" } />
             { this.props.homepagedetails.map((branch) => (
             <DashboardButton key= {branch.id} title={ branch.id} onPress= { () => this.handleButtonPress( branch.id , branch.sectiondata) }/>
