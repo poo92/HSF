@@ -8,18 +8,26 @@ import { PageContainer } from '../components/containers/appPagesContainer';
 import { SecctionTitlle } from '../components/titles/sectionTitle';
 import { DashboardButton } from '../components/buttons/dashboardButton'
 
+import { getProductionLineDetails } from '../actions/dashboard.js';
 
-class Section extends Component{
+
+class ProductionLines extends Component{
   static propTypes = {
     navigation: PropTypes.object,
+    factoryName: PropTypes.string,
+    productionlineDetails:PropTypes.object,
   }
 
-  handleButtonPress = () => {
-    // this.props.navigation.navigate('Sections', { branchName : branchName , sections: sectiondata});
-    console.log("here");
+  handleButtonPress = (factory,branch,section,productionline) => {
+    this.props.dispatch(getProductionLineDetails(factory,branch,section,productionline));
+
   }
 
-
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.productionlineDetails){
+      this.props.navigation.navigate('ViewProductionLine');
+    }
+}
 
 
 
@@ -28,8 +36,8 @@ class Section extends Component{
       <PageContainer>
         <SecctionTitlle titleText={ "Production Lines of " + this.props.navigation.state.params.sectionName +" Section" } />
           { this.props.navigation.state.params.productionlines.map((productionLine) => (
-          <DashboardButton key= {productionLine} title={ productionLine} onPress= { () => this.handleButtonPress() }/>
-
+          <DashboardButton key= {productionLine} title={ productionLine}
+              onPress= { () => this.handleButtonPress(this.props.factoryName,this.props.navigation.state.params.branchName,this.props.navigation.state.params.sectionName,productionLine ) }/>
           ))}
       </PageContainer>
     );
@@ -45,7 +53,9 @@ class Section extends Component{
 
 const mapStateToProps =  state  => ({
   isLoggedIn : state.auth.isLoggedIn,
+  factoryName: state.dashboard.factoryName,
+  productionlineDetails : state.dashboard.productionlineDetails,
 });
 
 
-export default connect(mapStateToProps)(Section);
+export default connect(mapStateToProps)(ProductionLines);

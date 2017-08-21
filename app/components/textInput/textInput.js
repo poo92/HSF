@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Styles from './styles';
 
 const textInput = (props) => {
-   const { placeholder , secureTextEntry = false, onChangeText } = props;
+   const { placeholder , secureTextEntry = false, onChangeText  } = props;
   return(
     <View>
       <TextInput
@@ -23,6 +23,7 @@ textInput.PropTypes = {
   placeholder: PropTypes.string,
   secureInput: PropTypes.bool,
   onChangeText: PropTypes.func,
+  onFocus: PropTypes.func,
 
 };
 

@@ -4,6 +4,7 @@ import { StatusBar, KeyboardAvoidingView, TouchableHighlight, Text } from 'react
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { connectAlert } from '../components/alert';
 import { LoginPageContainer } from '../components/containers/loginPageContainer';
 import { Logo } from '../components/logo';
 import { TextInput } from '../components/textInput';
@@ -43,8 +44,8 @@ class Login extends Component{
   };
 
 
+
   componentWillReceiveProps(nextProps) {
-    console.log("inside get list" + nextProps.isLoggedIn);
     if(nextProps.isLoggedIn){
       this.props.navigation.navigate('userDashBoard');
     }
@@ -63,12 +64,14 @@ class Login extends Component{
             <TextInput
               placeholder={"username"}
               onChangeText={ this.handleUsernameText }
+
               />
 
             <TextInput
               placeholder={"password"}
               secureTextEntry={true}
               onChangeText={ this.handlePasswordText }
+
               />
 
             <Button title={"Login"} onpress={ () => this.handlelogin() } />
@@ -84,6 +87,8 @@ class Login extends Component{
 
 const mapStateToProps =  state  => ({
   isLoggedIn : state.auth.isLoggedIn,
+  invalidCredentials: state.auth.invalidCredentials,
+
 });
 
 

@@ -9,6 +9,7 @@ import Login from '../screens/Login';
 import userDashBoard from '../screens/DashBoard';
 import Sections from '../screens/Sections'
 import ProductionLines from '../screens/ProductionLines'
+import ViewProductionLine from '../screens/ViewProductionLine'
 
 const userDashBoardStack = StackNavigator(
 {
@@ -29,6 +30,13 @@ const userDashBoardStack = StackNavigator(
     screen: ProductionLines,
     navigationOptions: ({navigation}) => ({
     title: (Platform.OS === 'ios') ? '' : 'Sections',
+    headerStyle: {height: 30, backgroundColor:'#004080'},
+  })
+  },
+  ViewProductionLine:{
+    screen: ViewProductionLine,
+    navigationOptions: ({navigation}) => ({
+    title: (Platform.OS === 'ios') ? '' : 'Production Lines',
     headerStyle: {height: 30, backgroundColor:'#004080'},
   })
   },

@@ -20,20 +20,8 @@ class  userDashBoard extends Component {
     navigation: PropTypes.object,
     dispatch: PropTypes.func,
     username: PropTypes.string,
+    factoryName: PropTypes.string,
   }
-
-  // componentWillMount() {
-  //   this.props.dispatch(getHomePageDetails());
-  //   console.log("state.homePage.homePageDetails" + this.props.homepagedetails);
-  //   console.log("username" + this.props.username);
-  // }
-
-  // componentWillReceiveProps(newProps) {
-  //   console.log("state.homePage.homePageDetails" + newProps.homepagedetails);
-  //   { newProps.homepagedetails.map((item) => (
-  //     console.log(" here" + item.id)
-  //   ))};
-  // }
 
 
   componentWillMount(){
@@ -56,7 +44,7 @@ class  userDashBoard extends Component {
     }else{
       return(
         <PageContainer>
-          <DashboardHeader  factoryName= {"CocaCola PVT Ltd"} />
+          <DashboardHeader  factoryName= { this.props.factoryName } />
           <SecctionTitlle titleText={ "Branches" } />
             { this.props.homepagedetails.map((branch) => (
             <DashboardButton key= {branch.id} title={ branch.id} onPress= { () => this.handleButtonPress( branch.id , branch.sectiondata) }/>
@@ -80,6 +68,7 @@ const mapStateToProps =  (state)  => {
   return{
     username : state.auth.username,
     homepagedetails : state.dashboard.homePageDetails,
+    factoryName: state.dashboard.factoryName,
   };
 };
 

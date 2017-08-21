@@ -5,7 +5,9 @@ import * as types from '../actions/types'; // action types from types.js file
 const defaultState = {
     isLoggedIn: false,
     username: '',
-    password: ''
+    password: '',
+    invalidCredentials: false,
+
 };
 
 const reducer =  ( state = defaultState, action) => {
@@ -16,7 +18,16 @@ const reducer =  ( state = defaultState, action) => {
         ...state,
         isLoggedIn: true,
         username: action.username,
-        password: action.password
+        password: action.password,
+        
+      };
+    case types.INVALID_CREDENTIALS:
+      return{
+        ...state,
+        isLoggedIn: false,
+        username: '',
+        password: '',
+        invalidCredentials: true
       };
     case types.LOGOUT:
     default:
