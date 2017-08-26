@@ -12,7 +12,7 @@ if (width < GlobalStyles.SCREEN_SIZE){
   fontSize =  width / 25 ;
 
 }else{
-  fontSize =  width / 70 ;
+  fontSize =  width / 60 ;
 }
 
 
@@ -22,7 +22,8 @@ const Styles = StyleSheet.create({
     width: width,
     padding : 7,
     color   :'#000000',
-    fontWeight:'normal',
+    fontWeight:'600',
+    fontSize:fontSize,
     fontFamily :'Lato',
     backgroundColor : '#b3b3b3'
   },

@@ -25,14 +25,15 @@ const Styles = StyleSheet.create({
   button: {
    width:width,
    height : buttonHeight,
-   backgroundColor:'#3399ff',
+   backgroundColor: GlobalStyles.BUTTON_COLOR,
    justifyContent: 'center',
    marginTop:10,
  },
  buttonText: {
  textAlign: 'left',
- // fontSize:fontSize,
+ fontSize:fontSize,
  fontWeight: '400',
+ fontFamily:'serif',
  color:"black",
 
 },

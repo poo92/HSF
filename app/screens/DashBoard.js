@@ -47,13 +47,13 @@ class  userDashBoard extends Component {
           <DashboardHeader  factoryName= { this.props.factoryName } />
           <SecctionTitlle titleText={ "Branches" } />
             { this.props.homepagedetails.map((branch) => (
-            <DashboardButton key= {branch.id} title={ branch.id} onPress= { () => this.handleButtonPress( branch.id , branch.sectiondata) }/>
+            <DashboardButton key= {branch.id} title={ branch.id + " Branch"} onPress= { () => this.handleButtonPress( branch.id , branch.sectiondata) }/>
             ))}
         </PageContainer>
       );
     }
 
-    //...
+   
   }
 
 

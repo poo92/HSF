@@ -7,15 +7,13 @@ const height = Dimensions.get('window').height;
 
 // let fontSize = width / 20;
 
-let fontSize, textInputWidth,headerHeight;
+let fontSize, headerHeight;
 if (width < GlobalStyles.SCREEN_SIZE){
   fontSize =  width / 20 ;
-  textInputWidth = width / 3;
   headerHeight = height /12;
 }else{
-  fontSize =  width / 70 ;
-  textInputWidth = width / 5 ;
-  headerHeight = height /14;
+  fontSize =  width / 55 ;
+  headerHeight = height /12;
 
 }
 
@@ -26,7 +24,7 @@ const Styles = StyleSheet.create({
   container: {
     width: width,
     height           : headerHeight,
-    backgroundColor : '#004080',
+    backgroundColor : GlobalStyles.HEADER_COLOR,
     paddingTop: (Platform.OS === 'ios') ? 20 : StatusBar.currentHeight,
   },
   title: {
@@ -42,7 +40,7 @@ const Styles = StyleSheet.create({
     // flex            : 1,
     color           : '#bfbfbf',
     textAlign       : 'center',
-    fontSize        : fontSize * 0.6,
+    fontSize        : fontSize * 0.7,
     fontFamily      :'Lato',
     // marginTop:-10,
 

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { PageContainer } from '../components/containers/appPagesContainer';
 import { SecctionTitlle } from '../components/titles/sectionTitle';
-import { DashboardButton } from '../components/buttons/dashboardButton'
+import { DashboardButton } from '../components/buttons/dashboardButton';
 
 import { getProductionLineDetails } from '../actions/dashboard.js';
 
@@ -15,7 +15,7 @@ class ProductionLines extends Component{
   static propTypes = {
     navigation: PropTypes.object,
     factoryName: PropTypes.string,
-    productionlineDetails:PropTypes.object,
+    productionlineDetails:PropTypes.array,
   }
 
   handleButtonPress = (factory,branch,section,productionline) => {
@@ -55,6 +55,7 @@ const mapStateToProps =  state  => ({
   isLoggedIn : state.auth.isLoggedIn,
   factoryName: state.dashboard.factoryName,
   productionlineDetails : state.dashboard.productionlineDetails,
+
 });
 
 
