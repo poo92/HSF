@@ -16,6 +16,7 @@ import ViewProductionLine from '../screens/ViewProductionLine'
 const headerStyle = {
       height: 35,
       backgroundColor: GlobalStyles.HEADER_COLOR,
+
 }
 
 const userDashBoardStack = StackNavigator(

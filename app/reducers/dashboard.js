@@ -17,7 +17,7 @@ const reducer =  ( state = {}, action) => {
           ...state,
           branch: action.branch,
           section : action.section,
-          productionline :action.productionline, 
+          productionline :action.productionline,
           productionlineDetails: action.productionlineDetails,
         };
     default:

@@ -7,41 +7,66 @@ const height = Dimensions.get('window').width;
 let fontSize, imageWidth;
 if (width < GlobalStyles.SCREEN_SIZE){
       fontSize =  width / 25 ;
-      imageWidth = width / 4 ;
+      imageWidth = width / 6 ;
 }else{
       fontSize =  width / 65 ;
-      imageWidth = width / 10 ;
+      imageWidth = width / 14 ;
 }
 
 
 
 
 var Styles = StyleSheet.create({
-    container   : {
-        backgroundColor: GlobalStyles.BACKGROUND_COLOR,
-        margin:10,
-        overflow:'visible'
-    },
-    titleContainer : {
-        flexDirection: 'row'
-    },
-    title       : {
-        flex    : 1,
-        padding : 10,
-        color   :'#2a2f43',
-        fontWeight:'bold'
-    },
-    button      : {
-        backgroundColor:GlobalStyles.BUTTON_COLOR,
-    },
-    buttonImage : {
-        width   : 30,
-        height  : 25
-    },
-    body        : {
-        padding     : 10,
-        paddingTop  : 0
-    }
+      container   : {
+            backgroundColor: GlobalStyles.BACKGROUND_COLOR,
+            margin:10,
+            overflow:'visible'
+      },
+      titleContainer : {
+            flexDirection: 'row'
+      },
+      title       : {
+            flex    : 1,
+            padding : 5,
+            color   :'black',
+            fontWeight:'bold'
+      },
+      sensorTitle       : {
+            paddingTop : 5,
+            color   :'black',
+            fontWeight:'600'
+      },
+      button      : {
+            flex    : 1,
+            backgroundColor:GlobalStyles.BUTTON_COLOR,
+
+      },
+      sensorButton      : {
+            margin: 5,
+            width: imageWidth * 1.5,
+            height: imageWidth * 1.5,
+            borderWidth:1,
+            borderColor:"#a5a2a2",
+            backgroundColor:GlobalStyles.BUTTON_COLOR_LIGHT,
+      },
+      buttonImage : {
+            width   : imageWidth,
+            height  : imageWidth,
+            margin:5,
+      },
+      sensorButtonImage : {
+            width   : imageWidth,
+            height  : imageWidth,
+            margin:5,
+            marginTop:0,
+            alignSelf:'center'
+      },
+      body        : {
+            flexDirection:'row',
+            flexGrow:1,
+            flexWrap:'wrap',
+            overflow:'visible',
+      }
 });
 
 export default Styles;

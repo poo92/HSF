@@ -29,7 +29,7 @@ const Styles = StyleSheet.create({
   },
   title: {
     // flex            : 1,
-    color           : '#bfbfbf',
+    color           : GlobalStyles.DASHBOARD_HEADER_FONT_COLOR,
     textAlign       : 'center',
     fontSize        : fontSize,
     fontFamily      :'Lato',
@@ -37,14 +37,10 @@ const Styles = StyleSheet.create({
     // borderWidth:5,
   },
   titleFactoryName: {
-    // flex            : 1,
-    color           : '#bfbfbf',
+        color           : GlobalStyles.DASHBOARD_HEADER_FONT_COLOR,
     textAlign       : 'center',
     fontSize        : fontSize * 0.7,
     fontFamily      :'Lato',
-    // marginTop:-10,
-
-    // borderWidth:5,
   },
 
 });

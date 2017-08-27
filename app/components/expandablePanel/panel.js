@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {StyleSheet,Text,View,Image,TouchableHighlight,Animated, ScrollView} from 'react-native';
+import {StyleSheet,Text,View,Image,TouchableHighlight,Animated, Easing,ScrollView, TouchableOpacity} from 'react-native';
 
 import * as urls from '../../config/urls';         // get the url for images
 import Styles from './styles';
@@ -8,11 +8,10 @@ import Styles from './styles';
 class Panel extends Component{
       constructor(props){
             super(props);
-
-
             this.state = {
                   title       : props.title,
                   image : props.image,
+                  sensorList: props.sensorList,
                   expanded    : false,
                   animation   : new Animated.Value()
             };
@@ -27,10 +26,12 @@ class Panel extends Component{
             });
 
             this.state.animation.setValue(initialValue);
-            Animated.spring(
+            Animated.timing(
                   this.state.animation,
                   {
-                        toValue: finalValue
+                        toValue: finalValue,
+                        duration:80,
+                        easing:Easing.linear
                   }
             ).start();
       }
@@ -48,6 +49,10 @@ class Panel extends Component{
             this.state.animation.setValue(event.nativeEvent.layout.height);
       }
 
+      handlePress(){
+            console.log("in here");
+      }
+
       render(){
 
 
@@ -55,24 +60,41 @@ class Panel extends Component{
                   <Animated.View
                         style={[Styles.container,{height: this.state.animation}]}>
 
-                              <View style={Styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
+                        <View style={Styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
 
-                                    <TouchableHighlight
-                                          style={Styles.button}
-                                          onPress={this.toggle.bind(this)}
-                                          underlayColor="#f1f1f1">
-                                          <View>
-                                                <Text style={Styles.title}>{this.state.title}</Text>
-                                                <Image source={{uri: urls.IMAGE_URL + this.state.image}}
-                                                      style={ Styles.image} />
-                                          </View>
+                              <TouchableOpacity
+                                    style={Styles.button}
+                                    onPress={this.toggle.bind(this)}
+                                    underlayColor="#f1f1f1">
+                                    <View>
+                                          <Text style={Styles.title}>{this.state.title}</Text>
+                                          <Image source={{uri: urls.IMAGE_URL + this.state.image}}
+                                                style={ Styles.buttonImage} />
 
-                                    </TouchableHighlight>
-                              </View>
+                                    </View>
 
+                              </TouchableOpacity>
+                        </View>
+                        <ScrollView>
                               <View style={Styles.body} onLayout={this._setMaxHeight.bind(this)}>
-                                    {this.props.children}
+
+                                    { this.state.sensorList.map((sensor) => (
+                                                <TouchableOpacity
+                                                      style={ Styles.sensorButton}
+                                                      onPress={ this.handlePress}
+                                                      underlayColor="#f1f1f1"
+                                                      key= { sensor.sensorName }>
+
+                                                      <View>
+                                                            <Text style={ Styles.sensorTitle}> { sensor.sensorName }</Text>
+                                                            <Image source={{uri: urls.IMAGE_URL + sensor.sensorImage}}
+                                                                  style={ Styles.sensorButtonImage} />
+                                                      </View>
+                                                </TouchableOpacity>
+                                    ))}
+
                               </View>
+                        </ScrollView>
                   </Animated.View>
             );
       }

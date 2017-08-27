@@ -12,7 +12,7 @@ if (width < GlobalStyles.SCREEN_SIZE){
    buttonWidth = width / 4; ;
 }else{
   fontSize =  width / 60 ;
-  buttonWidth = width / 7  ;
+  buttonWidth = width / 8  ;
 }
 
 
@@ -25,8 +25,8 @@ const Styles = StyleSheet.create({
   button: {
    height:40,
    width:buttonWidth,
-   borderRadius:5,
-   backgroundColor:'#3399ff',
+   borderRadius:2,
+   backgroundColor:GlobalStyles.BUTTON_COLOR,
    justifyContent: 'center',
    marginTop:10,
  },

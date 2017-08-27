@@ -7,7 +7,8 @@ import * as urls from '../config/urls';         // get the url for images
 import { PageContainer } from '../components/containers/appPagesContainer';
 import { SecctionTitlle } from '../components/titles/sectionTitle';
 import { DashboardButton } from '../components/buttons/dashboardButton';
-import { Panel } from '../components/expandablePanel';
+import { Panel , ExpandablePanel, Styles} from '../components/expandablePanel';
+
 
 class ViewProductionLine extends Component{
       static propTypes = {
@@ -23,21 +24,20 @@ class ViewProductionLine extends Component{
 
       render() {
             return(
-                  <ScrollView>
-                        <PageContainer>
+
+                  <PageContainer>
+                        <ScrollView >
                               <SecctionTitlle titleText={ "Components  of " + this.props.productionline +" ProductionLine" } />
                               { this.props.productionlineDetails.map((component) => (
-                                    <Panel key={component.component} title={component.component} image={component.componentImage} >
-                                          { component.sensorList.map((sensor) => (
-                                                <View key= { sensor.sensor }>
-                                                      <Text> { sensor.sensor }</Text>
-                                                </View>
-                                          ))}
+                                    <Panel key={component.componentName} title={component.componentName} image={component.componentImage} sensorList={component.sensorList } >
+
                                     </Panel>
 
+
                               ))}
-                        </PageContainer>
-                  </ScrollView>
+                        </ScrollView>
+                  </PageContainer>
+
             );
 
       }
@@ -45,8 +45,22 @@ class ViewProductionLine extends Component{
       // <ExpandablePanel title={component.component} image={component.componentImage} productionlinedata={component.sensorList}  key={component.component}>
       // </ExpandablePanel>
 
+      // <Panel key={component.component} title={component.component} image={component.componentImage} >
+      //       { component.sensorList.map((sensor) => (
+      //             <View key= { sensor.sensor }>
+      //                   <Text> { sensor.sensor }</Text>
+      //             </View>
+      //       ))}
+      // </Panel>
 
 
+      // { component.sensorList.map((sensor) => (
+      //       <View key= { sensor.sensor }>
+      //             <Text> { sensor.sensor }</Text>
+      //                   <Image source={{uri: urls.IMAGE_URL + sensor.sensorImage}}
+      //                         style={ Styles.buttonImage} />
+      //       </View>
+      // ))}
 }
 
 

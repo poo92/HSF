@@ -1,6 +1,5 @@
-import ExpandablePanel from './expandablePanel';
 import Panel from './panel';
-import styles from './styles';
+import Styles from './styles';
 
 
-export { Panel , styles };
+export { Panel ,  Styles };

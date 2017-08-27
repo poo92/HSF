@@ -76,7 +76,7 @@ export const getProductionLineDetails = (factory,branch,section,productionline) 
     let sectionRequest = section+"-Section";
     return(dispatch) =>{
         // return fetch('http://192.168.1.4:80/readfromfileserver/productionlineServer.php?'
-return fetch('http://10.22.122.61:80/readfromfileserver/productionlineServer.php?'
+return fetch('http://192.168.1.8:80/readfromfileserver/productionlineServer.php?'
         , {
             method: 'POST',
             headers : {
