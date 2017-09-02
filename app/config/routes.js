@@ -81,7 +81,7 @@ export default StackNavigator(
 {
   // cardStyle: { paddingTop: StatusBar.currentHeight},
   headerMode: 'none',
-  transitionConfig: getSlideFromRightTransition
+  // transitionConfig: getSlideFromRightTransition
 
 }
 );

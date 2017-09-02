@@ -19,11 +19,19 @@ const reducer =  ( state = defaultState, action) => {
         isLoggedIn: true,
         username: action.username,
         password: action.password,
-        
+        invalidCredentials: false
+
+
       };
     case types.INVALID_CREDENTIALS:
+     // let newState = {
+     //      isLoggedIn: false,
+     //      username: '',
+     //      password: '',
+     //      invalidCredentials: true,
+     // };
+     // return newState;
       return{
-        ...state,
         isLoggedIn: false,
         username: '',
         password: '',

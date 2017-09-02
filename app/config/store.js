@@ -10,8 +10,7 @@ const middleware = [];
 
 if(process.env.NODE_ENV === 'development'){
   middleware.push(logger);
-  middleware.push(thunkMiddleware);
 }
-
+middleware.push(thunkMiddleware);
 
 export default createStore(reducers, applyMiddleware(...middleware));

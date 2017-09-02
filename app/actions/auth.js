@@ -1,5 +1,5 @@
 // contains all the actions regarding user authentication
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import * as types from './types'; // action types from types.js file
 
 
@@ -12,7 +12,7 @@ export const login = (username, password) => {
       type: types.LOGIN,
       username: username,
       password: password,
-      
+
 
     };
 
@@ -30,7 +30,6 @@ export const login = (username, password) => {
 };
 
 alertUser = (alert) => {
-  // console.log("inside alert");
    Alert.alert('Invalid Credentials', alert);
     };
 

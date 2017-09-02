@@ -13,7 +13,7 @@ class Home extends Component{
   }
 
   componentWillMount(){
-    this._navigateToPages();
+    // this._navigateToPages();
   }
 
 
@@ -24,6 +24,8 @@ class Home extends Component{
       this.props.navigation.navigate('Login');
     }
   }
+
+
 
   render() {
     return(null);
