@@ -4,32 +4,44 @@ import { View , Image , Text, Keyboard } from 'react-native';
 import Styles from './styles';
 
 class Logo extends Component {
-  // componentDidMount() {
-  //   this.keyboardShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardShow);
-  //   this.keyboardHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardHide);
-  // }
 
-  // componentWillMount() {
-  //   this.keyboardShowListener.remove();
-  //   this.keyboardHideListener.remove();
-  // }
+      constructor (props) {
+            super(props);
+            this.state = {
+                  logoStyle: false,
+            };
+            this._keyboardDidShow = this._keyboardDidShow.bind(this);
+            this._keyboardDidHide = this._keyboardDidHide.bind(this);
 
-  // keyboardShow = () => {
-  //   console.log('keyboard dod show');
-  // };
-  //
-  // keyboardHide = () => {
-  //   console.log('keyboard dod hide');
-  // };
+      }
 
-  render(){
-    return(
-      <View style={Styles.container}>
-        <Image style={Styles.loginPageLogo} source={require('./images/logo.jpg')} />
-        <Text style={Styles.title}> Hitech Smart Factory</Text>
-      </View>
-    )
-  }
+
+      componentWillMount () {
+            this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+            this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+      }
+      componentWillUnmount () {
+            this.keyboardDidShowListener.remove();
+            this.keyboardDidHideListener.remove();
+      }
+
+
+      _keyboardDidShow () {
+            this.setState({ logoStyle:  true });
+      };
+
+      _keyboardDidHide () {
+            this.setState({ logoStyle:  false });
+      };
+
+      render(){
+            return(
+                  <View style={Styles.container}>
+                        <Image style={[Styles.loginPageLogo, this.state.logoStyle && Styles.loginPageLogoKeyBoardView]}  source={require('./images/logo.jpg')} />
+                        <Text style={[Styles.title, this.state.logoStyle && Styles.titleKeyBoardView]}> Hitech Smart Factory</Text>
+                  </View>
+            )
+      }
 }
 
 

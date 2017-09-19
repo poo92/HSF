@@ -5,8 +5,7 @@ import * as GlobalStyles from '../../config/GlobalStyles';
 
 
 
-const width = Dimensions.get('window').width;
-// console.log("width    " + width );
+const width = GlobalStyles.WIDTH;
 
 let fontSize, imageWidth;
 if (width < GlobalStyles.SCREEN_SIZE){
@@ -42,10 +41,25 @@ const Styles = StyleSheet.create({
     marginBottom: 10,
     //  marginLeft:120,
   },
+  loginPageLogoKeyBoardView: {
+        display:'none',
+    // justifyContent: 'center',
+    // width: imageWidth/2,
+    // height: imageWidth/2,
+    // marginBottom: 5,
+  },
   title: {
     fontSize: fontSize,
     textAlign: 'center',
     margin: 10,
+    color: '#000000',
+    fontWeight: '400',
+    fontFamily:'sans'
+  },
+  titleKeyboardView: {
+    fontSize: fontSize/5,
+    textAlign: 'center',
+    margin: 5,
     color: '#000000',
     fontWeight: '400',
     fontFamily:'sans'

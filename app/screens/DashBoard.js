@@ -21,11 +21,12 @@ class  userDashBoard extends Component {
     dispatch: PropTypes.func,
     username: PropTypes.string,
     factoryName: PropTypes.string,
+    userType : PropTypes.string,
   }
 
 
   componentWillMount(){
-    this.props.dispatch(getDashboardDetails());
+    this.props.dispatch(getDashboardDetails(this.props.username));
   }
 
 
@@ -38,22 +39,22 @@ class  userDashBoard extends Component {
   // }
 
   render() {
-  var homepagedetails = this.props.homepagedetails;
-    if (!homepagedetails) {
+  var dashboardDetailsOfFactoryUser = this.props.dashboardDetailsOfFactoryUser;
+    if (!dashboardDetailsOfFactoryUser) {
       return <ActivityIndicator />;
     }else{
       return(
         <PageContainer>
           <DashboardHeader  factoryName= { this.props.factoryName } />
           <SecctionTitlle titleText={ "Branches" } />
-            { this.props.homepagedetails.map((branch) => (
-            <DashboardButton key= {branch.id} title={ branch.id + " Branch"} onPress= { () => this.handleButtonPress( branch.id , branch.sectiondata) }/>
-            ))}
+           { this.props.dashboardDetailsOfFactoryUser.map((branch) => (
+           <DashboardButton key= {branch.name} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections) }/>
+           ))}
         </PageContainer>
       );
     }
 
-   
+
   }
 
 
@@ -67,8 +68,9 @@ class  userDashBoard extends Component {
 const mapStateToProps =  (state)  => {
   return{
     username : state.auth.username,
-    homepagedetails : state.dashboard.homePageDetails,
+    dashboardDetailsOfFactoryUser : state.dashboard.dashboardDetailsOfFactoryUser,
     factoryName: state.dashboard.factoryName,
+    userType : state.dashboard.userType,
   };
 };
 

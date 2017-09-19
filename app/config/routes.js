@@ -7,9 +7,10 @@ import * as GlobalStyles from './GlobalStyles';
 import Home from '../screens/Home';
 import Login from '../screens/Login';
 import userDashBoard from '../screens/DashBoard';
-import Sections from '../screens/Sections'
-import ProductionLines from '../screens/ProductionLines'
-import ViewProductionLine from '../screens/ViewProductionLine'
+import Sections from '../screens/Sections';
+import ProductionLines from '../screens/ProductionLines';
+import ViewProductionLine from '../screens/ViewProductionLine';
+import ViewSensor from '../screens/ViewSensor';
 
 
 
@@ -48,7 +49,13 @@ const userDashBoardStack = StackNavigator(
     headerStyle: headerStyle,
   })
   },
-
+  ViewSensor:{
+    screen: ViewSensor,
+    navigationOptions: ({navigation}) => ({
+    title: (Platform.OS === 'ios') ? '' : 'Sensor',
+    headerStyle: headerStyle,
+  })
+  },
 },
 {
   // cardStyle: { paddingTop: StatusBar.currentHeight},

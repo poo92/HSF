@@ -6,7 +6,7 @@ import * as types from './types'; // action types from types.js file
 
 // actual login method
 export const login = (username, password) => {
-  if(username == "1" && password == "1"){
+  if(username == "Poornima" && password == "1"){
     // console.log("inside");
     return {
       type: types.LOGIN,
@@ -17,7 +17,7 @@ export const login = (username, password) => {
     };
 
   }else{
-        this.alertUser("Please enter correct credentials");
+        Alert.alert('Invalid Credentials',"Please enter correct credentials");
     return {
         type: types.INVALID_CREDENTIALS,
         username: '',
@@ -27,11 +27,16 @@ export const login = (username, password) => {
   // }
 
 
+
 };
 
-alertUser = (alert) => {
-   Alert.alert('Invalid Credentials', alert);
-    };
+// alertUser = (message) => {
+//    // Alert.alert('Invalid Credentials', message,);
+//    Alert.alert(
+//            'Alert Title',
+//            message,
+//          )
+//     };
 
 //  test login method for development
 // export const login = (username, password) => {

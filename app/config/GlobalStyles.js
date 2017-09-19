@@ -4,6 +4,10 @@
 // export const BUTTON_COLOR_LIGHT = "#82e9de";
 // export const HEADER_COLOR = "#005b4f";
 
+import {  Dimensions } from 'react-native';
+
+export const WIDTH = Dimensions.get('window').width;
+export const HEIGHT = Dimensions.get('window').height;
 
 export const SCREEN_SIZE = 1000;
 export const BACKGROUND_COLOR = "#d9d9d9";

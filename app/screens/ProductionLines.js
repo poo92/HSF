@@ -34,7 +34,7 @@ class ProductionLines extends Component{
   render() {
     return(
       <PageContainer>
-        <SecctionTitlle titleText={ "Production Lines of " + this.props.navigation.state.params.sectionName +" Section" } />
+        <SecctionTitlle titleText={ "Production Lines of " + this.props.navigation.state.params.sectionName } />
           { this.props.navigation.state.params.productionlines.map((productionLine) => (
           <DashboardButton key= {productionLine} title={ productionLine}
               onPress= { () => this.handleButtonPress(this.props.factoryName,this.props.navigation.state.params.branchName,this.props.navigation.state.params.sectionName,productionLine ) }/>

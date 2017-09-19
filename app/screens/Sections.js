@@ -27,9 +27,9 @@ class Section extends Component{
   render() {
     return(
       <PageContainer>
-        <SecctionTitlle titleText={ "Sections of " + this.props.navigation.state.params.branchName +" Branch" } />
+        <SecctionTitlle titleText={ "Sections of " + this.props.navigation.state.params.branchName } />
           { this.props.navigation.state.params.sections.map((section) => (
-          <DashboardButton key= {section.id} title={ section.id + " Section"} onPress= { () => this.handleButtonPress(this.props.navigation.state.params.branchName, section.id, section.productionlines) }/>
+          <DashboardButton key= {section.name} title={ section.name} onPress= { () => this.handleButtonPress(this.props.navigation.state.params.branchName, section.name, section.productionlines) }/>
 
           ))}
       </PageContainer>

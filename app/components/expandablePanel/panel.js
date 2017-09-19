@@ -12,9 +12,11 @@ class Panel extends Component{
       constructor(props){
             super(props);
             this.state = {
-                  title       : props.title,
-                  image : props.image,
-                  sensorList: props.sensorList,
+                  component   : props.component,
+                  productionLine: props.productionLine,
+                  image       : props.image,
+                  sensorList  : props.sensorList,
+                  onPress     : props.onPress,
                   expanded    : false,
                   animation   : new Animated.Value()
             };
@@ -52,9 +54,7 @@ class Panel extends Component{
             this.state.animation.setValue(event.nativeEvent.layout.height);
       }
 
-      handlePress(){
-            console.log("in here");
-      }
+
 
       render(){
 
@@ -68,7 +68,7 @@ class Panel extends Component{
                                     onPress={this.toggle.bind(this)}
                                     underlayColor="#f1f1f1">
                                     <View>
-                                          <Text style={Styles.title}>{this.state.title}</Text>
+                                          <Text style={Styles.title}>{this.state.component}</Text>
                                           <CachedImage source={{ uri: urls.IMAGE_URL + this.state.image }} mutable style={ Styles.buttonImage}/>
                                     </View>
                               </TouchableOpacity>
@@ -78,7 +78,7 @@ class Panel extends Component{
                                     { this.state.sensorList.map((sensor) => (
                                           <TouchableOpacity
                                                 style={ Styles.sensorButton}
-                                                onPress={ this.handlePress}
+                                                onPress={ () => this.props.onPress(this.state.component,sensor.sensorName)}
                                                 underlayColor="#f1f1f1"
                                                 key= { sensor.sensorName }>
                                                 <View>

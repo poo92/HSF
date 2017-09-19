@@ -1,8 +1,8 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import * as GlobalStyles from '../../../config/GlobalStyles';
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = GlobalStyles.WIDTH;
+const height = GlobalStyles.HEIGHT;
 
 
 let fontSize, buttonHeight;

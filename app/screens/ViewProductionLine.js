@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, KeyboardAvoidingView, TouchableHighlight, Text, View, Image, ScrollView } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, TouchableHighlight, Text, View, Image, ScrollView, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,10 @@ import * as urls from '../config/urls';         // get the url for images
 import { PageContainer } from '../components/containers/appPagesContainer';
 import { SecctionTitlle } from '../components/titles/sectionTitle';
 import { DashboardButton } from '../components/buttons/dashboardButton';
-import { Panel , ExpandablePanel, Styles} from '../components/expandablePanel';
+import { Panel} from '../components/expandablePanel';
+
+import { getSensorDetails } from '../actions/dashboard.js';
+
 
 
 class ViewProductionLine extends Component{
@@ -15,12 +18,26 @@ class ViewProductionLine extends Component{
             navigation: PropTypes.object,
             productionlineDetails: PropTypes.array,
             productionline: PropTypes.string,
+            factory: PropTypes.string,
+            section: PropTypes.string,
+            branch: PropTypes.string,
+            sensorDetails: PropTypes.string,
+
       }
 
-      handleButtonPress(){
-            console.log("here");
-      }
 
+
+
+
+
+
+      handleButtonPress= (component,sensorName) =>{
+            this.props.dispatch(getSensorDetails(this.props.factory,this.props.branch,this.props.section,this.props.productionline,component,sensorName));
+            this.navigateToPage();
+      }
+       navigateToPage(){
+             this.props.navigation.navigate('ViewSensor');
+       }
 
       render() {
             return(
@@ -29,7 +46,12 @@ class ViewProductionLine extends Component{
                         <ScrollView >
                               <SecctionTitlle titleText={ "Components  of " + this.props.productionline +" ProductionLine" } />
                               { this.props.productionlineDetails.map((component) => (
-                                    <Panel key={component.componentName} title={component.componentName} image={component.componentImage} sensorList={component.sensorList } >
+                                    <Panel
+                                          key={component.componentName}
+                                          component={component.componentName}
+                                          image={component.componentImage}
+                                          sensorList={component.sensorList}
+                                          onPress={this.handleButtonPress} >
 
                                     </Panel>
 
@@ -118,6 +140,11 @@ const mapStateToProps =  state  => ({
       isLoggedIn : state.auth.isLoggedIn,
       productionlineDetails : state.dashboard.productionlineDetails,
       productionline: state.dashboard.productionline,
+      factory : state.dashboard.factoryName,
+      branch: state.dashboard.branch,
+      section: state.dashboard.section,
+      sensorDetails : state.dashboard.sensorDetails,
+
 
 });
 
