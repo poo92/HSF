@@ -21,7 +21,6 @@ class  userDashBoard extends Component {
     dispatch: PropTypes.func,
     username: PropTypes.string,
     factoryName: PropTypes.string,
-    userType : PropTypes.string,
   }
 
 
@@ -39,17 +38,17 @@ class  userDashBoard extends Component {
   // }
 
   render() {
-  var dashboardDetailsOfFactoryUser = this.props.dashboardDetailsOfFactoryUser;
-    if (!dashboardDetailsOfFactoryUser) {
+  var dashboardDetails = this.props.dashboardDetails;
+    if (!dashboardDetails) {
       return <ActivityIndicator />;
     }else{
       return(
         <PageContainer>
           <DashboardHeader  factoryName= { this.props.factoryName } />
           <SecctionTitlle titleText={ "Branches" } />
-           { this.props.dashboardDetailsOfFactoryUser.map((branch) => (
-           <DashboardButton key= {branch.name} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections) }/>
-           ))}
+            { this.props.dashboardDetails.map((branch) => (
+            <DashboardButton key= {branch.name} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections) }/>
+            ))}
         </PageContainer>
       );
     }
@@ -68,9 +67,8 @@ class  userDashBoard extends Component {
 const mapStateToProps =  (state)  => {
   return{
     username : state.auth.username,
-    dashboardDetailsOfFactoryUser : state.dashboard.dashboardDetailsOfFactoryUser,
+    dashboardDetails : state.dashboard.dashboardDetailsOfFactoryUser,
     factoryName: state.dashboard.factoryName,
-    userType : state.dashboard.userType,
   };
 };
 

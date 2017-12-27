@@ -15,9 +15,9 @@ class Section extends Component{
   }
 
   handleButtonPress = (branchName, sectionName, productionlines) => {
-    console.log("productionlines  :" + productionlines);
+    console.log(productionlines);
     this.props.navigation.navigate('ProductionLines', { branchName: branchName, sectionName : sectionName , productionlines: productionlines});
-    console.log("here");
+
   }
 
 
@@ -29,7 +29,7 @@ class Section extends Component{
       <PageContainer>
         <SecctionTitlle titleText={ "Sections of " + this.props.navigation.state.params.branchName } />
           { this.props.navigation.state.params.sections.map((section) => (
-          <DashboardButton key= {section.name} title={ section.name} onPress= { () => this.handleButtonPress(this.props.navigation.state.params.branchName, section.name, section.productionlines) }/>
+          <DashboardButton key= {section.id} title={ section.name} onPress= { () => this.handleButtonPress(this.props.navigation.state.params.branchName, section.name, section.productionlines) }/>
 
           ))}
       </PageContainer>

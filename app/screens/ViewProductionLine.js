@@ -25,14 +25,8 @@ class ViewProductionLine extends Component{
 
       }
 
-
-
-
-
-
-
-      handleButtonPress= (component,sensorName) =>{
-            this.props.dispatch(getSensorDetails(this.props.factory,this.props.branch,this.props.section,this.props.productionline,component,sensorName));
+      handleButtonPress= (component,sensorName, sensorTag) =>{            
+            this.props.dispatch(getSensorDetails(this.props.factory,this.props.branch,this.props.section,this.props.productionline,component,sensorName,sensorTag));
             this.navigateToPage();
       }
        navigateToPage(){
@@ -52,7 +46,6 @@ class ViewProductionLine extends Component{
                                           image={component.componentImage}
                                           sensorList={component.sensorList}
                                           onPress={this.handleButtonPress} >
-
                                     </Panel>
 
 
@@ -119,19 +112,6 @@ class ViewProductionLine extends Component{
 
 
 ///////***************************************************************************/////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

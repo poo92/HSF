@@ -78,7 +78,7 @@ class Panel extends Component{
                                     { this.state.sensorList.map((sensor) => (
                                           <TouchableOpacity
                                                 style={ Styles.sensorButton}
-                                                onPress={ () => this.props.onPress(this.state.component,sensor.sensorName)}
+                                                onPress={ () => this.props.onPress(this.state.component,sensor.sensorName,sensor.sensorTag)}
                                                 underlayColor="#f1f1f1"
                                                 key= { sensor.sensorName }>
                                                 <View>

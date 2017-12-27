@@ -6,7 +6,7 @@ import * as types from './types'; // action types from types.js file
 
 // actual login method
 export const login = (username, password) => {
-  if(username == "Poornima" && password == "1"){
+  if((username == "poornima" && password == "1") || (username == "pooh" && password == "1") || (username == "vihanga" && password == "1")){
     // console.log("inside");
     return {
       type: types.LOGIN,

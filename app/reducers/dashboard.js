@@ -4,8 +4,7 @@ import * as types from '../actions/types'; // action types from types.js file
 
 
 
-const reducer =  ( state = {}, action) => {
-      console.log("reduccer");
+const reducer =  ( state = {}, action) => {      
       switch (action.type) {
             case types.GET_DASHBOARD_DETAILS_OF_FACTORY_USER:
             return {
