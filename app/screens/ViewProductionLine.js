@@ -25,7 +25,7 @@ class ViewProductionLine extends Component{
 
       }
 
-      handleButtonPress= (component,sensorName, sensorTag) =>{            
+      handleButtonPress= (component,sensorName, sensorTag) =>{
             this.props.dispatch(getSensorDetails(this.props.factory,this.props.branch,this.props.section,this.props.productionline,component,sensorName,sensorTag));
             this.navigateToPage();
       }

@@ -32,5 +32,12 @@ class Graph extends Component {
       }
 }
 
+// <WebView
+//       source={{uri: this.state.uri}}
+//       style={Styles.graph}
+// />
+
+
+
 
 export default Graph;

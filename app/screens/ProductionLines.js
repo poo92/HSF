@@ -18,8 +18,8 @@ class ProductionLines extends Component{
     productionlineDetails:PropTypes.array,
   }
 
-  handleButtonPress = (fid,bid,sid,pid,branchName,sectionName,productionlineName) => {
-    this.props.dispatch(getProductionLineDetails(fid,bid,sid,pid));
+  handleButtonPress = (fid,bid,sid,pid,productionlineName) => {
+    this.props.dispatch(getProductionLineDetails(fid,bid,sid,pid,productionlineName));
 
   }
 
@@ -37,7 +37,7 @@ class ProductionLines extends Component{
         <SecctionTitlle titleText={ "Production Lines of " + this.props.navigation.state.params.sectionName } />
           { this.props.navigation.state.params.productionlines.map((productionLine) => (
           <DashboardButton key= {productionLine.name} title={ productionLine.name}
-              onPress= { () => this.handleButtonPress(productionLine.fid,productionLine.bid,productionLine.sid,productionLine.pid,productionLine.branchName,productionLine.sectionName,productionLine.name) }/>
+              onPress= { () => this.handleButtonPress(productionLine.fid,productionLine.bid,productionLine.sid,productionLine.pid,productionLine.name) }/>
           ))}
       </PageContainer>
     );

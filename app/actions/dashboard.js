@@ -14,69 +14,7 @@ alertUser = (message) => {
 
 
 
-// // Hard coded method to get dashboard details of user
-// export const getDashboardDetails = () => {
-//       // sample json
-//       let homePageDetails = [
-//             {
-//                   "id": "Main",
-//                   "sectiondata": [
-//                         {
-//                               "id": "Molding",
-//                               "productionlines": [
-//                                     "Prod-1",
-//                               ]
-//                         },
-//                         {
-//                               "id": "Sawing",
-//                               "productionlines": [
-//                                     "Test",
-//
-//                               ]
-//                         },
-//                         {
-//                               "id": "Delivery",
-//                               "productionlines": [
-//                                     "1",
-//                                     "2"
-//                               ]
-//                         }
-//                   ],
-//             },
-//             {
-//                   "id": "Negombo",
-//                   "sectiondata": [
-//                         {
-//                               "id": "Delivery",
-//                               "productionlines": [
-//                                     "1",
-//                                     "2",
-//                                     "3"
-//                               ]
-//                         },
-//                         {
-//                               "id": "y",
-//                               "productionlines": [
-//                                     "1",
-//                                     "2"
-//                               ]
-//                         }
-//                   ]
-//             }
-//
-//       ];
-//
-//       return {
-//             type: types.GET_HOMEPAGE_DETAILS,
-//             homepageDetails: homePageDetails,
-//             factoryName: "Bata-Shoe-Company",
-//
-//       };
-//
-// };
-
-
-// actual method to get dashboard details of user
+// method to get dashboard details of user from DSS
 export const getDashboardDetails = (username) => {
 
       var userid, userType,factory;
@@ -126,135 +64,29 @@ export const getDashboardDetails = (username) => {
                   dispatch(getDashboardDetailsOfSectionUser( { userid :userid, userType :userType , factoryName :factory, fid :fid}));
             }
 
-
-
-
       })
       .catch((error) => {
             console.error(error);
       })};
 
 
-
-
-      //       return fetch('http://192.168.59.1:9763/services/getDashboardDetailsOfUser/get_productionline_details'
-      //       , {
-      //             method: 'POST',
-      //             headers : {
-      //                   'Content-Type': 'application/json',
-      //                   // 'Accept': 'application/json'
-      //             },
-      //             body: JSON.stringify({
-      //
-      //                   _postget_productionline_details: {
-      //                         username : username
-      //                   }
-      //
-      //
-      //             })
-      //       }
-      // )
-      // .then(async (response) => await response.text())
-      // .then((responseJson) => {
-      //
-      //       var jsonResponse = JSON.parse(responseJson);
-      //       //Reading the object
-      //       var one = jsonResponse.userIDs.UserID;
-      //       var Array1 = [];
-      //       var Array2 = [];
-      //       var Array3 = [];
-      //       var Array4 = [];
-      //
-      //
-      //       {one.map((ProductionLineIDs) => (
-      //             Array1.push(ProductionLineIDs)
-      //       ))}
-      //
-      //       {Array1.map((object1) => (
-      //             Array2.push(object1.ProductionLineIDs.ProductionLineID)
-      //       ))}
-      //
-      //       for (let userObject1 of Array2) {
-      //             {userObject1.map((object3) => (
-      //                   Array3.push(object3.DetailsOfProductionLines.DetailsOfProductionLine)
-      //                   // Array2.push(object1.ProductionLineIDs.ProductionLineID)
-      //             ))}
-      //       }
-      //
-      //       for (let userObject2 of Array3) {
-      //             {userObject2.map((object4) => (
-      //                   Array4.push(object4)
-      //             ))}
-      //       }
-      //
-      //       // arrays for
-      //       var company;
-      //       var branches = [];
-      //       var branchNames = new Set();
-      //       var sections = new Set();
-      //       var productionlines = new Set();
-      //
-      //
-      //
-      //       function Branch (name) {
-      //             this.name = name;
-      //             this.sections = new Set();
-      //             this.productionlines = new Set();
-      //       }
-      //
-      //
-      //
-      //
-      //       for (let object of Array4) {
-      //             company = object.factory_name;
-      //
-      //             if(!(object.branch_name in branches)){
-      //                   branchNames.add(object.branch_name);
-      //                   var branchObject = new Branch(object.branch_name);
-      //                   branchObject.sections.add(object.section_name);
-      //                   branchObject.productionlines.add(object.productionline_name);
-      //                   branches[object.branch_name] = branchObject;
-      //                   console.log(branches.length);
-      //             }
-      //
-      //             // branches.add(object.branch_name);
-      //             // sections.add(object.section_name);
-      //             // productionlines.add(object.productionline_name);
-      //       }
-      //
-      //       // console.log(company + " b " +branches.length + " s " + sections.size + " p " + productionlines.size);
-      //
-      //       for(var branch in branchNames) {
-      //             console.log(branches[branch]);
-      //       }
-      //
-      //
-      //       // console.log(" jsonResponse jsonResponse jsonResponse " + one.ProductionLineIDs);
-      //       if(jsonResponse.error){
-      //             this.alertUser("This productionline has not modeled yet.");
-      //       }else{
-      //             // dispatch(setProductionlineDetails( { productionlineDetails :jsonResponse , Branch : branch, Section : section, Productionline : productionline }));
-      //       }
-      // })
-      // .catch((error) => {
-      //       console.error(error);
-      // })};
-
-
 };
 
+// branch class
 function Branch(name) {
       this.name = name;
       this.id = 0;
       this.sections = [];
 };
 
+// section class
 function Section(name) {
       this.name = name;
       this.id = 0;
       this.productionlines = [];
 };
 
+// productionline class
 function ProductionLine(name) {
       this.name = name;
       this.fid = 0;
@@ -314,14 +146,9 @@ export function getDashboardDetailsOfFactoryUser( { userid, userType, factoryNam
                         }
                               Branches.push(branchObject);
                   }
-
-
             }
-
-            console.log(Branches);
+            // console.log(Branches);
             dispatch(setDashboardDetailsOfFactoryUser( { dashboardDetails :Branches, userType: userType, factory:factoryName }));
-
-
 
       })
       .catch((error) => {
@@ -342,12 +169,6 @@ export function setDashboardDetailsOfFactoryUser( { dashboardDetails , userType 
 };
 
 // ---------------------------------------------- mehods of factory user ------------------------------------------ //
-//
-// function Branch1(name) {
-//       this.name = name;
-//       this.sections = [];
-// };
-
 
 // ---------------------------------------------- mehods of branch  user ------------------------------------------ //
 export function getDashboardDetailsOfBranchUser( { userid, userType, factoryName, fid }) {
@@ -363,7 +184,6 @@ export function getDashboardDetailsOfBranchUser( { userid, userType, factoryName
                         _postget_dashboard_details_of_branch_user: {
                               uid : userid
                         }
-
                   })
             }
       )
@@ -376,8 +196,6 @@ export function getDashboardDetailsOfBranchUser( { userid, userType, factoryName
             for (let branch of BranchJson) {
                   branchesArray.push(branch);
             }
-
-
 
             for (let ob of branchesArray) {
                   var branchNameArray = [];
@@ -556,58 +374,8 @@ export function getDashboardDetailsOfSectionUser( { userid, userType, factoryNam
 // ---------------------------------------------- mehods of section  user ------------------------------------------ //
 
 
-
-
-
-
-//localhost method - check ip :D
-// export const getProductionLineDetails = (factory,branch,section,productionline) => {
-//       console.log(factory + " " + branch + " " + section + " " + productionline );
-//       // http://192.168.1.4:80/readfromfileserver/file.php?getProductionlinedetails?
-//       // 10.22.120.29
-//       let branchRequest = branch+"-Branch";
-//       let sectionRequest = section+"-Section";
-//       return(dispatch) =>{
-//             // return fetch('http://192.168.1.4:80/readfromfileserver/productionlineServer.php?'
-//             return fetch('http://10.22.120.187:80/readfromfileserver/productionlineServer.php?'
-//             , {
-//                   method: 'POST',
-//                   headers : {
-//                         'Content-Type': 'application/json',
-//                         // 'Accept': 'application/json'
-//                   },
-//                   body: JSON.stringify({
-//                         factoryName: factory,
-//                         branchName: branchRequest,
-//                         sectionName:sectionRequest ,
-//                         productionline: productionline,
-//
-//                   })
-//             }
-//       )
-//       .then((response) => response.text())
-//       .then((responseJson) => {
-//             console.log(responseJson);
-//             var jsonResponse = JSON.parse(responseJson);
-//             console.log("responseJson   " + jsonResponse.error);
-//             if(jsonResponse.error){
-//                   this.alertUser("No such productionLine");
-//
-//             }else{
-//                   dispatch(setProductionlineDetails( { productionlineDetails :jsonResponse , Branch : branch, Section : section, Productionline : productionline }));
-//
-//             }
-//       })
-//       .catch((error) => {
-//             console.error(error);
-//       })};
-//
-// };
-
-
-//method with url
-export const getProductionLineDetails = (fid,bid,sid,pid,branchName, sectionName, productionline) => {
-      console.log(fid,bid,sid,pid,branchName, sectionName, productionline);
+// method to get details of the productionline
+export const getProductionLineDetails = (fid,bid,sid,pid,productionline) => {
       return(dispatch) =>{
             // return fetch('http://192.168.1.2/readfromfileserver/productionlineServer.php?'
             // return fetch('http://ec2-52-38-15-248.us-west-2.compute.amazonaws.com/hitech-smart-factory/productionlineServer.php?'
@@ -635,7 +403,7 @@ export const getProductionLineDetails = (fid,bid,sid,pid,branchName, sectionName
                   this.alertUser("This productionline has not modeled yet.");
             }else{
                   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                  dispatch(setProductionlineDetails( { productionlineDetails :jsonResponse ,Section : sectionName, Productionline : productionline }));
+                  dispatch(setProductionlineDetails( { productionlineDetails :jsonResponse ,Productionline : productionline }));
             }
       })
       .catch((error) => {
@@ -647,7 +415,6 @@ export const getProductionLineDetails = (fid,bid,sid,pid,branchName, sectionName
 
 
 export function setProductionlineDetails( { productionlineDetails, Branch, Section, Productionline }) {
-      // console.log("productionlineDetails  : " + productionlineDetails);
       return{
             type: types.GET_PRODUCTIONLINE_DETAILS,
             productionlineDetails : productionlineDetails,
@@ -659,42 +426,52 @@ export function setProductionlineDetails( { productionlineDetails, Branch, Secti
 
 };
 
-// localhost method - check ip :D
+
+
+// lmethod to get sensor graph
 export const getSensorDetails = (factory,branch,section,productionline,component,sensorName,sensorTag) => {
-      // http://192.168.1.4:80/readfromfileserver/file.php?getProductionlinedetails?
-      // 10.22.120.29
+
       console.log(sensorTag);
       let branchRequest = branch+"-Branch";
       let sectionRequest = section+"-Section";
+
+      // return(dispatch) =>{
+      //       // return fetch('http://192.168.1.4:80/readfromfileserver/productionlineServer.php?'
+      //       return fetch('http://35.196.127.106/graph2.php'
+      //       , {
+      //             method: 'POST',
+      //             headers : {
+      //                   'Content-Type': 'application/json',
+      //                   // 'Accept': 'application/json'
+      //             },
+      //             body: JSON.stringify({
+      //                   "Tag":"3/8/6/8/4/18"
+      //
+      //             })
+      //       }
+      // )
+      // .then(async (response) => await response.text())
+      // .then((responseJson) => {
+      //
+      //       var jsonResponse = JSON.parse(responseJson);
+      //       console.log("jsonResponse.uri  " + jsonResponse.uri);
+      //       if(jsonResponse.error){
+      //             this.alertUser("No such productionLine");
+      //       }else{
+      //             dispatch(setSensorDetails( { sensorDetails :jsonResponse.uri , sensorName : sensorName }));
+      //
+      //       }
+      // })
+      // .catch((error) => {
+      //       console.error(error);
+      // })};
       return(dispatch) =>{
-            // return fetch('http://192.168.1.4:80/readfromfileserver/productionlineServer.php?'
-            return fetch('http://192.168.1.8:80/sensorDetails.php?'
-            , {
-                  method: 'POST',
-                  headers : {
-                        'Content-Type': 'application/json',
-                        // 'Accept': 'application/json'
-                  },
-                  body: JSON.stringify({
-                        tag: "Bata-Shoe-CompanyMainBranchMoldingSectionProd-1Filling-ArmDHT11",
+            // var graphurl= 'https://i.pinimg.com/736x/2e/e6/99/2ee6998e34c3e2eff7b894c66cfc5267--infographics-animation-line-graph-design.jpg'
+      // var graphurl = 'http://35.196.127.106:3000/dashboard-solo/db/3-8-6-8-4-18?panelId=1&orgId=1&refresh=5s&from=1514324796452&to=1514367996452';
+      var graphurl = 'http://35.196.127.106:3000/dashboard-solo/db/3-8-6-8-4-18?panelId=1&orgId=1&refresh=5s';
 
-                  })
-            }
-      )
-      .then(async (response) => await response.text())
-      .then((responseJson) => {
-            var jsonResponse = JSON.parse(responseJson);
-            console.log("jsonResponse.uri  " + jsonResponse.uri);
-            if(jsonResponse.error){
-                  this.alertUser("No such productionLine");
-            }else{
-                  dispatch(setSensorDetails( { sensorDetails :jsonResponse.uri , sensorName : sensorName }));
-
-            }
-      })
-      .catch((error) => {
-            console.error(error);
-      })};
+      dispatch(setSensorDetails( { sensorDetails :graphurl , sensorName : sensorName }));
+}
 
 };
 

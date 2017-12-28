@@ -6,23 +6,16 @@ import * as GlobalStyles from '../../config/GlobalStyles';
 
 
 const width = GlobalStyles.WIDTH;
-const height = GlobalStyles.WIDTH;
+const height = GlobalStyles.HEIGHT;
 
 let graphWidth, grapHeight;
 if (width < GlobalStyles.SCREEN_SIZE){
   graphWidth =  width * 0.9 ;
-  grapHeight = height / 2 ;
+  grapHeight = height * 0.8 ;
 }else{
   graphWidth =  width * 0.9  ;
-  grapHeight = height / 4 ;
+  grapHeight = height * 0.7 ;
 }
-
-
-
-
-
-
-
 
 const Styles = StyleSheet.create({
   container: {
