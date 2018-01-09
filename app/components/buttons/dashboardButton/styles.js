@@ -7,8 +7,8 @@ const height = GlobalStyles.HEIGHT;
 
 let fontSize, buttonHeight;
 if (width < GlobalStyles.SCREEN_SIZE){
-   fontSize =  width / 25 ;
-   buttonHeight = height / 18;
+   fontSize =  width / 23 ;
+   buttonHeight = height / 7;
 
 }else{
   fontSize =  width / 70 ;
@@ -18,23 +18,27 @@ if (width < GlobalStyles.SCREEN_SIZE){
 
 
 const Styles = StyleSheet.create({
-  container: {
-    alignItems:'center',
-
+  container: {    // alignItems:'center',
+  flexDirection : 'row',
+   justifyContent: 'space-between',
   },
   button: {
-   width:width,
+   width:width/ 2.5,
    height : buttonHeight,
    backgroundColor: GlobalStyles.BUTTON_COLOR,
    justifyContent: 'center',
-   marginTop:10,
+   marginTop:20,
+   marginLeft : 20,
+
+   //
+
  },
  buttonText: {
- textAlign: 'left',
+ textAlign: 'center',
  fontSize:fontSize,
- fontWeight: '400',
+ fontWeight: '600',
  fontFamily:'serif',
- color:"black",
+ color:"#252525",
 
 },
 });

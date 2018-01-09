@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "630980269831",
+    "firebase_url": "https://hitechsf-8648e.firebaseio.com",
+    "project_id": "hitechsf-8648e",
+    "storage_bucket": "hitechsf-8648e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630980269831:android:7c631e8c716b4094",
+        "android_client_info": {
+          "package_name": "com.hitechsmartfactory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630980269831-1e7kigonsnduq93lvp4amebgakv4oqks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBixZ8DjO6Pke6_E8wuqMd3iUiwBYGy51M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

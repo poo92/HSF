@@ -3,7 +3,7 @@ import * as GlobalStyles from '../../config/GlobalStyles';
 
 
 
-
+const TITLE_COLOR = '#ffffff';
 
 const width = GlobalStyles.WIDTH;
 
@@ -39,6 +39,8 @@ const Styles = StyleSheet.create({
     width: imageWidth,
     height: imageWidth,
     marginBottom: 10,
+    borderWidth:1,
+    borderColor:'#ffffff'
     //  marginLeft:120,
   },
   loginPageLogoKeyBoardView: {
@@ -52,7 +54,7 @@ const Styles = StyleSheet.create({
     fontSize: fontSize,
     textAlign: 'center',
     margin: 10,
-    color: '#000000',
+    color: TITLE_COLOR,
     fontWeight: '400',
     fontFamily:'sans'
   },
@@ -60,7 +62,7 @@ const Styles = StyleSheet.create({
     fontSize: fontSize/5,
     textAlign: 'center',
     margin: 5,
-    color: '#000000',
+    color: TITLE_COLOR,
     fontWeight: '400',
     fontFamily:'sans'
   },

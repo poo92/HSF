@@ -31,28 +31,28 @@ const userDashBoardStack = StackNavigator(
   Sections:{
     screen: Sections,
     navigationOptions: ({navigation}) => ({
-    title: (Platform.OS === 'ios') ? '' : 'Branches',
+    // title: (Platform.OS === 'ios') ? '' : 'Branches',
     headerStyle: headerStyle,
   })
   },
   ProductionLines:{
     screen: ProductionLines,
     navigationOptions: ({navigation}) => ({
-    title: (Platform.OS === 'ios') ? '' : 'Sections',
+    // title: (Platform.OS === 'ios') ? '' : 'Sections',
     headerStyle: headerStyle,
   })
   },
   ViewProductionLine:{
     screen: ViewProductionLine,
     navigationOptions: ({navigation}) => ({
-    title: (Platform.OS === 'ios') ? '' : 'Production Lines',
+    // title: (Platform.OS === 'ios') ? '' : 'Production Lines',
     headerStyle: headerStyle,
   })
   },
   ViewSensor:{
     screen: ViewSensor,
     navigationOptions: ({navigation}) => ({
-    title: (Platform.OS === 'ios') ? '' : 'Sensor',
+    // title: (Platform.OS === 'ios') ? '' : 'Sensor',
     headerStyle: headerStyle,
   })
   },

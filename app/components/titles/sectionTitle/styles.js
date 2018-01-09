@@ -9,7 +9,7 @@ const height = GlobalStyles.HEIGHT;
 
 let fontSize;
 if (width < GlobalStyles.SCREEN_SIZE){
-  fontSize =  width / 25 ;
+  fontSize =  width / 22 ;
 
 }else{
   fontSize =  width / 60 ;

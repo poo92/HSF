@@ -10,6 +10,7 @@ const textInput = (props) => {
     <View>
       <TextInput
         style={Styles.textInput}
+        placeholderTextColor="#9b9b9b"
         {...props}
       />
     </View>
@@ -24,6 +25,7 @@ textInput.PropTypes = {
   secureInput: PropTypes.bool,
   onChangeText: PropTypes.func,
   onFocus: PropTypes.func,
+
 
 };
 

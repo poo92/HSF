@@ -4,9 +4,9 @@ import { Platform, Alert } from 'react-native';
 
 // var url = 'http://192.168.59.1:9763/services/';
 // var url = 'http://172.17.42.1:9763/services/';
-var hostedip = 'http://35.202.158.138/';
-var url = 'http://35.202.158.138:9763/services/';
-
+var hostedip = 'http://35.196.106.255/';
+// var url = 'http://35.202.158.138:9763/services/';
+var url = 'http://35.196.174.178:9763/services/';
 // alert to user
 alertUser = (message) => {
       Alert.alert('Details Unavailable', message);
@@ -128,9 +128,10 @@ export function getDashboardDetailsOfFactoryUser( { userid, userType, factoryNam
             }
 
             for (let ob of branchesArray) {
-                  console.log(ob);
+                  // console.log(ob);
                   for (let ob1 of ob) {
                         var branchObject = new Branch(ob1.BranchName);
+                        branchObject.id = ob1.bid;
                         for (let section of ob1.Sections.Section) {
                               var sectionObject = new Section(section.SectionName);
                               sectionObject.id = section.sid;
@@ -147,6 +148,7 @@ export function getDashboardDetailsOfFactoryUser( { userid, userType, factoryNam
                               Branches.push(branchObject);
                   }
             }
+            // console.log("Branches");
             // console.log(Branches);
             dispatch(setDashboardDetailsOfFactoryUser( { dashboardDetails :Branches, userType: userType, factory:factoryName }));
 
@@ -377,9 +379,9 @@ export function getDashboardDetailsOfSectionUser( { userid, userType, factoryNam
 // method to get details of the productionline
 export const getProductionLineDetails = (fid,bid,sid,pid,productionline) => {
       return(dispatch) =>{
-            // return fetch('http://192.168.1.2/readfromfileserver/productionlineServer.php?'
+            return fetch('http://192.168.1.2/readfromfileserver/productionlineServer.php?' // localhost file
             // return fetch('http://ec2-52-38-15-248.us-west-2.compute.amazonaws.com/hitech-smart-factory/productionlineServer.php?'
-            return fetch( hostedip + 'hitech-smart-factory/productionlineServer.php?'
+            // return fetch( hostedip + 'hitech-smart-factory/productionlineServer.php?'
 
             , {
                   method: 'POST',
@@ -468,7 +470,7 @@ export const getSensorDetails = (factory,branch,section,productionline,component
       return(dispatch) =>{
             // var graphurl= 'https://i.pinimg.com/736x/2e/e6/99/2ee6998e34c3e2eff7b894c66cfc5267--infographics-animation-line-graph-design.jpg'
       // var graphurl = 'http://35.196.127.106:3000/dashboard-solo/db/3-8-6-8-4-18?panelId=1&orgId=1&refresh=5s&from=1514324796452&to=1514367996452';
-      var graphurl = 'http://35.196.127.106:3000/dashboard-solo/db/3-8-6-8-4-18?panelId=1&orgId=1&refresh=5s';
+      var graphurl = 'http://35.196.127.106:3000/dashboard-solo/db/3-8-6-8-4-18?panelId=1&orgId=1&%3Frefresh=1s&from=now-15m&to=now&refresh=1s';
 
       dispatch(setSensorDetails( { sensorDetails :graphurl , sensorName : sensorName }));
 }

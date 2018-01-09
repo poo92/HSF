@@ -24,6 +24,9 @@ const Styles = StyleSheet.create({
    width:textInputWidth,
    textAlign: 'center',
    fontSize:fontSize,
+   color: '#ffffff',
+   // placeholderTextColor: '#e1e1e1'
+
  },
 
 });

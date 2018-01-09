@@ -25,16 +25,17 @@ const Styles = StyleSheet.create({
   button: {
    height:40,
    width:buttonWidth,
-   borderRadius:2,
+   borderRadius:5,
    backgroundColor:GlobalStyles.BUTTON_COLOR,
    justifyContent: 'center',
    marginTop:10,
+
  },
  buttonText: {
  textAlign: 'center',
  fontSize:fontSize,
- fontWeight: '500',
- color:"black",
+ fontWeight: '600',
+ color:"#ffffff",
 
 },
 });

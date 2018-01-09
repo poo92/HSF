@@ -51,9 +51,6 @@ class Login extends Component{
             // }
 
 
-
-
-
             handlelogin = () => {
                   Keyboard.dismiss();
                   this.checkInternetConnection("Please check your internet connection");

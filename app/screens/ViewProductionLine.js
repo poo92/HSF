@@ -38,7 +38,7 @@ class ViewProductionLine extends Component{
 
                   <PageContainer>
                         <ScrollView >
-                              <SecctionTitlle titleText={ "Components  of " + this.props.productionline +" ProductionLine" } />
+                              <SecctionTitlle titleText={ "Components  of " + this.props.productionline  } />
                               { this.props.productionlineDetails.map((component) => (
                                     <Panel
                                           key={component.componentName}
