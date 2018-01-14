@@ -1,6 +1,6 @@
 // section list screen
 import React, { Component } from 'react';
-import { TouchableHighlight, Text, View ,ScrollView} from 'react-native';
+import { TouchableHighlight, Text, View ,ScrollView, Alert} from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -17,6 +17,7 @@ class Section extends Component{
              sectionList1 : [],
              sectionList2 : [],
         };
+        this.setSectionLists();
     }
 
 
@@ -24,9 +25,18 @@ class Section extends Component{
     navigation: PropTypes.object,
   }
 
-  handleButtonPress = (branchName, sectionName, productionlines) => {
-    console.log(productionlines);
-    this.props.navigation.navigate('ProductionLines', { branchName: branchName, sectionName : sectionName , productionlines: productionlines});
+  alertUser = (message) => {
+        Alert.alert('Details Unavailable', message);
+  };
+
+  handleButtonPress = ( sectionName, productionlines) => {
+
+        if(productionlines.length == 0){
+            this.alertUser("This section doesn't have any productionline");
+      }else{
+            this.props.navigation.navigate('ProductionLines', { sectionName : sectionName , productionlines: productionlines});
+      }
+
 
   }
 
@@ -34,16 +44,16 @@ class Section extends Component{
     return(
       <PageContainer>
         <SecctionTitlle titleText={ "Sections of " + this.props.navigation.state.params.branchName } />
-       {this.setSectionLists()}
+
        <View style={GlobalStyles.gridView.container} >
              <View style={GlobalStyles.gridView.column} >
                    { this.state.sectionList1.map((section) => (
-                  <DashboardButton key= {section.id} title={ section.name} onPress= { () => this.handleButtonPress(this.props.navigation.state.params.branchName, section.name, section.productionlines) }/>
+                  <DashboardButton key= {section.id} title={ section.name} onPress= { () => this.handleButtonPress(section.name, section.productionlines)} />
                   ))}
            </View>
            <View style={GlobalStyles.gridView.column}>
                  { this.state.sectionList2.map((section) => (
-                <DashboardButton key= {section.id} title={ section.name} onPress= { () => this.handleButtonPress(this.props.navigation.state.params.branchName, section.name, section.productionlines) }/>
+                <DashboardButton key= {section.id} title={ section.name} onPress= { () => this.handleButtonPress(section.name, section.productionlines)} />
                 ))}
              </View>
        </View>
@@ -51,6 +61,7 @@ class Section extends Component{
     );
   }
 
+// {this.setSectionLists()}
   setSectionLists = () => {
         var sections = this.props.navigation.state.params.sections;
         var length = sections.length;
@@ -67,7 +78,9 @@ class Section extends Component{
            var lastbranch = sections[length - 1];
            this.state.sectionList1.push(lastbranch);
      }
+
  }
+
 
 }
 

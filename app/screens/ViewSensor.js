@@ -17,23 +17,6 @@ class ViewSensor extends Component{
 
       }
 
-      // // navigate to userDashBoard
-      // componentWillReceiveProps(nextProps) {
-      //       if(nextProps.sensorDetails){
-      //             this.props.navigation.navigate('ViewSensor');
-      //       }
-      // }
-
-
-
-
-
-      //
-      // handleButtonPress= (component,sensorName) =>{
-      //       this.props.dispatch(getSensorDetails(this.props.factory,this.props.branch,this.props.section,this.props.productionline,component,sensorName));
-      // }
-
-
       render() {
             if(this.props.sensorDetails){
                   return(

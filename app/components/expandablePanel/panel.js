@@ -80,7 +80,7 @@ class Panel extends Component{
                                                 style={ Styles.sensorButton}
                                                 onPress={ () => this.props.onPress(this.state.component,sensor.sensorName,sensor.sensorTag)}
                                                 underlayColor="#f1f1f1"
-                                                key= { sensor.sensorName }>
+                                                key= { sensor.sensorTag }>
                                                 <View>
                                                       <Text style={ Styles.sensorTitle}> { sensor.sensorName }</Text>
                                                       <CachedImage source={{ uri: urls.IMAGE_URL + sensor.sensorImage }} mutable style={ Styles.sensorButtonImage}/>

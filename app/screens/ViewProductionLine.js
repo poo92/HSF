@@ -34,84 +34,37 @@ class ViewProductionLine extends Component{
        }
 
       render() {
-            return(
+            var productionlineDetails = this.props.productionlineDetails;
+            if(!productionlineDetails){
+                  return <ActivityIndicator />;
+            }else{
+                  return(
 
-                  <PageContainer>
-                        <ScrollView >
-                              <SecctionTitlle titleText={ "Components  of " + this.props.productionline  } />
-                              { this.props.productionlineDetails.map((component) => (
-                                    <Panel
-                                          key={component.componentName}
-                                          component={component.componentName}
-                                          image={component.componentImage}
-                                          sensorList={component.sensorList}
-                                          onPress={this.handleButtonPress} >
-                                    </Panel>
+                        <PageContainer>
+                              <ScrollView >
+                                    <SecctionTitlle titleText={ "Components  of " + this.props.productionline  } />
+                                    { this.props.productionlineDetails.map((component) => (
+                                          <Panel
+                                                key={component.componentTag}
+                                                component={component.componentName}
+                                                image={component.componentImage}
+                                                sensorList={component.sensorList}
+                                                onPress={this.handleButtonPress} >
+                                          </Panel>
+                                    ))}
+                              </ScrollView>
+                        </PageContainer>
 
+                  );
+            }
 
-                              ))}
-                        </ScrollView>
-                  </PageContainer>
-
-            );
 
       }
 
-      // <ExpandablePanel title={component.component} image={component.componentImage} productionlinedata={component.sensorList}  key={component.component}>
-      // </ExpandablePanel>
 
-      // <Panel key={component.component} title={component.component} image={component.componentImage} >
-      //       { component.sensorList.map((sensor) => (
-      //             <View key= { sensor.sensor }>
-      //                   <Text> { sensor.sensor }</Text>
-      //             </View>
-      //       ))}
-      // </Panel>
-
-
-      // { component.sensorList.map((sensor) => (
-      //       <View key= { sensor.sensor }>
-      //             <Text> { sensor.sensor }</Text>
-      //                   <Image source={{uri: urls.IMAGE_URL + sensor.sensorImage}}
-      //                         style={ Styles.buttonImage} />
-      //       </View>
-      // ))}
 }
 
 
-///////////*************************************************************************************************////////////
-// { this.props.productionlineDetails.map((component) => (
-//                                     <View  key={component.component}>
-//
-//                                           <DashboardButton key= {component.component} title={ component.component}
-//                                                 onPress= { () => this.handleButtonPress() }/>
-//
-//                                           <Image source={{uri: urls.IMAGE_URL + component.componentImage}}
-//                                                 style={{width: 100, height: 100}} />
-//
-//
-//                                           { component.sensorList.map((sensor) => (
-//
-//
-//
-//
-//
-//
-//
-//                                                 <View  key={sensor.sensor}>
-//                                                       <Text>
-//                                                             { sensor.sensor}
-//                                                       </Text>
-//                                                       <Image source={{uri: urls.IMAGE_URL + sensor.sensorImage}}
-//                                                             style={{width: 100, height: 100}} />
-//                                                 </View>
-//                                                 //
-//                                           ))}
-//                                     </View>
-//                               ))}
-
-
-///////***************************************************************************/////////////////////////
 
 
 

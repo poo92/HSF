@@ -1,24 +1,26 @@
 // contains methods related to dashboard
 import * as types from './types'; // action types from types.js file
 import { Platform, Alert } from 'react-native';
+import * as urls from '../config/urls';
 
-// var url = 'http://192.168.59.1:9763/services/';
-// var url = 'http://172.17.42.1:9763/services/';
-var hostedip = 'http://35.196.106.255/';
-// var url = 'http://35.202.158.138:9763/services/';
-var url = 'http://35.196.174.178:9763/services/';
+var url = urls.DSS_URL;
+var productionlineServerURL = urls.PRODUCTIONLINE_SERVER_URL;
+
+
 // alert to user
 alertUser = (message) => {
       Alert.alert('Details Unavailable', message);
 };
 
-
+// method to check if an object is enpty
+function isEmpty(obj){
+    return (Object.getOwnPropertyNames(obj).length === 0);
+}
 
 // method to get dashboard details of user from DSS
 export const getDashboardDetails = (username) => {
 
       var userid, userType,factory;
-
       //get userId and usertype from DB
       return(dispatch) =>{
             return fetch( url +'getBasicUserDetails/get_basic_user_details'
@@ -26,7 +28,6 @@ export const getDashboardDetails = (username) => {
                   method: 'POST',
                   headers : {
                         'Content-Type': 'application/json',
-                        // 'Accept': 'application/json'
                   },
                   body: JSON.stringify({
                         _postget_basic_user_details: {
@@ -41,7 +42,6 @@ export const getDashboardDetails = (username) => {
             var jsonResponse = JSON.parse(responseJson);
             var userDetails = jsonResponse.UserDetails.User;
 
-
             for (let user of userDetails) {
                   userid = user.userid;
                   userType = user.userType;
@@ -54,13 +54,12 @@ export const getDashboardDetails = (username) => {
 
             // call relevent method according to userType
 
-            // FACTORY USER
-            if(userType == 'f'){
+
+            if(userType == 'f'){    // FACTORY USER
                   dispatch(getDashboardDetailsOfFactoryUser( { userid :userid, userType :userType , factoryName :factory, fid :fid}));
-            }else if(userType == 'b'){
+            }else if(userType == 'b'){    // BRANCH USER
                   dispatch(getDashboardDetailsOfBranchUser( { userid :userid, userType :userType , factoryName :factory, fid :fid}));
-            }else if(userType == 's'){
-                  console.log("section user");
+            }else if(userType == 's'){    // SECTION USER
                   dispatch(getDashboardDetailsOfSectionUser( { userid :userid, userType :userType , factoryName :factory, fid :fid}));
             }
 
@@ -93,8 +92,6 @@ function ProductionLine(name) {
       this.bid =0;
       this.sid = 0;
       this.pid=0;
-      this.sectionName ="";
-      this.branchName = "";
 };
 
 // ---------------------------------------------- mehods of factory user ------------------------------------------ //
@@ -111,10 +108,7 @@ export function getDashboardDetailsOfFactoryUser( { userid, userType, factoryNam
                         _postget_dashboard_details_of_factory_user: {
                               uid : userid
                         }
-
-                  })
-            }
-      )
+                  })})
       .then(async (response) => await response.text())
       .then((responseJson) => {
             var jsonResponse = JSON.parse(responseJson);
@@ -132,31 +126,33 @@ export function getDashboardDetailsOfFactoryUser( { userid, userType, factoryNam
                   for (let ob1 of ob) {
                         var branchObject = new Branch(ob1.BranchName);
                         branchObject.id = ob1.bid;
-                        for (let section of ob1.Sections.Section) {
-                              var sectionObject = new Section(section.SectionName);
-                              sectionObject.id = section.sid;
-                              for (let producionline of section.Productionlines.Productionline) {
-                                    productionlineObject = new   ProductionLine (producionline.Name);
-                                    productionlineObject.fid =    fid;
-                                    productionlineObject.bid =  ob1.bid;
-                                    productionlineObject.sid =  section.sid;
-                                    productionlineObject.pid =  producionline.pid;
-                                    sectionObject.productionlines.push(productionlineObject);
+                        if(!isEmpty(ob1.Sections)){
+                              for (let section of ob1.Sections.Section) {
+                                    var sectionObject = new Section(section.SectionName);
+                                    sectionObject.id = section.sid;
+                                    if(!isEmpty(section.Productionlines)){
+                                          for (let producionline of section.Productionlines.Productionline) {
+                                                productionlineObject = new   ProductionLine (producionline.Name);
+                                                productionlineObject.fid =    fid;
+                                                productionlineObject.bid =  ob1.bid;
+                                                productionlineObject.sid =  section.sid;
+                                                productionlineObject.pid =  producionline.pid;
+                                                sectionObject.productionlines.push(productionlineObject);
+                                          }
+                                    }
+                                     branchObject.sections.push(sectionObject);
                               }
-                               branchObject.sections.push(sectionObject);
                         }
                               Branches.push(branchObject);
                   }
             }
-            // console.log("Branches");
+
             // console.log(Branches);
             dispatch(setDashboardDetailsOfFactoryUser( { dashboardDetails :Branches, userType: userType, factory:factoryName }));
-
       })
       .catch((error) => {
             console.error(error);
       })};
-
 };
 
 export function setDashboardDetailsOfFactoryUser( { dashboardDetails , userType ,factory}) {
@@ -165,7 +161,6 @@ export function setDashboardDetailsOfFactoryUser( { dashboardDetails , userType 
             dashboardDetails : dashboardDetails,
             userType: userType,
             factoryName: factory,
-
       };
 
 };
@@ -199,48 +194,33 @@ export function getDashboardDetailsOfBranchUser( { userid, userType, factoryName
                   branchesArray.push(branch);
             }
 
-            for (let ob of branchesArray) {
-                  var branchNameArray = [];
-                  var sectionsArray = [];
-                  branchNameArray.push(ob.BranchNames.BranchName);
-                  sectionsArray.push(ob.Sections);
-
-                  // console.log(branchNameArray);
-                  // console.log(sectionsArray);
-
-                  let branchObject;
-                  for (let ob1 of branchNameArray) {
-                        for (let ob2 of ob1) {
-                              branchObject = new Branch(ob2.Name);
+                  for (let ob1 of branchesArray) {
+                        var branchNameArray = ob1.BranchNames.BranchName;
+                        var branchName =  branchNameArray[0].Name;
+                        var branchObject = new Branch(branchName);
+                        branchObject.id = ob1.bid;
+                        if(!isEmpty(ob1.Sections)){
+                              for (let section of ob1.Sections.section) {
+                                    console.log(section);
+                                    var sectionObject = new Section(section.SectionName);
+                                    sectionObject.id = section.sid;
+                                    if(!isEmpty(section.Productionlines)){
+                                          for (let producionline of section.Productionlines.Productionline) {
+                                                productionlineObject = new   ProductionLine (producionline.Name);
+                                                productionlineObject.fid =    fid;
+                                                productionlineObject.bid =  ob1.bid;
+                                                productionlineObject.sid =  section.sid;
+                                                productionlineObject.pid =  producionline.pid;
+                                                sectionObject.productionlines.push(productionlineObject);
+                                          }
+                                    }
+                                     branchObject.sections.push(sectionObject);
+                              }
                         }
+                              Branches.push(branchObject);
                   }
-
-                  for (let ob3 of sectionsArray) {
-                        for (let ob4 of ob3.Section) {
-                                    var sectionObject = new Section(ob4.SectionName);
-                                    sectionObject.id  = ob4.sid;
-                                     for (let producionline of ob4.Productionlines.Productionline) {
-                                                      productionLineObject = new ProductionLine(producionline.Name);
-                                                      productionLineObject.fid = fid;
-                                                      productionLineObject.bid = ob.bid;
-                                                      productionLineObject.sid = ob4.sid;
-                                                      productionLineObject.pid = producionline.pid;
-                                                      productionLineObject.sectionName = ob4.Name;
-                                                      // productionLineObject.branchName = ob.BranchNames.BranchName;
-                                                      sectionObject.productionlines.push(productionLineObject);
-                                                }
-                                                branchObject.sections.push(sectionObject);
-                        }
-                  }
-                  Branches.push(branchObject);
-
-            }
-
-            // console.log("Branches",Branches);
+            // console.log(Branches);
             dispatch(setDashboardDetailsOfFactoryUser( { dashboardDetails :Branches, userType: userType, factory:factoryName }));
-
-
-
       })
       .catch((error) => {
             console.error(error);
@@ -379,9 +359,9 @@ export function getDashboardDetailsOfSectionUser( { userid, userType, factoryNam
 // method to get details of the productionline
 export const getProductionLineDetails = (fid,bid,sid,pid,productionline) => {
       return(dispatch) =>{
-            return fetch('http://192.168.1.2/readfromfileserver/productionlineServer.php?' // localhost file
+            // return fetch('http://192.168.1.2/readfromfileserver/productionlineServer.php?' // localhost file
             // return fetch('http://ec2-52-38-15-248.us-west-2.compute.amazonaws.com/hitech-smart-factory/productionlineServer.php?'
-            // return fetch( hostedip + 'hitech-smart-factory/productionlineServer.php?'
+            return fetch( productionlineServerURL + 'hitech-smart-factory/productionlineServer.php?'
 
             , {
                   method: 'POST',
@@ -401,6 +381,7 @@ export const getProductionLineDetails = (fid,bid,sid,pid,productionline) => {
       .then(async (response) => await response.text())
       .then((responseJson) => {
             var jsonResponse = JSON.parse(responseJson);
+            console.log(jsonResponse);
             if(jsonResponse.error){
                   this.alertUser("This productionline has not modeled yet.");
             }else{

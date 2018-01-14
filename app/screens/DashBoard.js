@@ -1,6 +1,6 @@
 // dashboard of the logged user
 import React, { Component} from 'react';
-import { View, Text, FlatList, TouchableHighlight, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight, ActivityIndicator, ScrollView, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -28,6 +28,10 @@ class  userDashBoard extends Component {
     factoryName: PropTypes.string,
   }
 
+  alertUser = (message) => {
+        Alert.alert('Details Unavailable', message);
+  };
+
 
   componentWillMount(){
     this.props.dispatch(getDashboardDetails(this.props.username));
@@ -36,7 +40,11 @@ class  userDashBoard extends Component {
 
 
   handleButtonPress = ( branchName, sectiondata) => {
-    this.props.navigation.navigate('Sections', { branchName : branchName , sections: sectiondata});
+        if(sectiondata.length == 0){
+             this.alertUser("This branch doesn't have any section");
+      }else{
+            this.props.navigation.navigate('Sections', { branchName : branchName , sections: sectiondata});
+      }
   }
 
 
@@ -53,12 +61,12 @@ class  userDashBoard extends Component {
           <View style={GlobalStyles.gridView.container} >
                 <View style={GlobalStyles.gridView.column} >
                       { this.state.branchList1.map((branch) => (
-                           <DashboardButton key= {branch.name} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections) }/>
+                           <DashboardButton key= {branch.id} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections)} />
                      ))}
                </View>
                <View style={GlobalStyles.gridView.column}>
                      { this.state.branchList2.map((branch) => (
-                        <DashboardButton key= {branch.name} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections) }/>
+                        <DashboardButton key= {branch.id} title={ branch.name} onPress= { () => this.handleButtonPress( branch.name , branch.sections)} />
                   ))}
                 </View>
           </View>

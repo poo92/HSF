@@ -16,7 +16,7 @@ import ViewSensor from '../screens/ViewSensor';
 
 const headerStyle = {
       height: 35,
-      backgroundColor: GlobalStyles.HEADER_COLOR,
+      backgroundColor: GlobalStyles.HEADER_COLOR,      
 
 }
 

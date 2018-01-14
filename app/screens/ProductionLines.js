@@ -19,6 +19,7 @@ class ProductionLines extends Component{
             prodlineList1 : [],
             prodlineList2 : [],
        };
+       this.setProdlineLists();
       }
 
   static propTypes = {
@@ -44,17 +45,17 @@ class ProductionLines extends Component{
     return(
       <PageContainer>
         <SecctionTitlle titleText={ "Production Lines of " + this.props.navigation.state.params.sectionName } />
-             {this.setProdlineLists()}
+
              <View style={GlobalStyles.gridView.container} >
                    <View style={GlobalStyles.gridView.column} >
                         { this.state.prodlineList1.map((productionLine) => (
-                        <DashboardButton key= {productionLine.name} title={ productionLine.name}
+                        <DashboardButton key= {productionLine.pid} title={ productionLine.name}
                             onPress= { () => this.handleButtonPress(productionLine.fid,productionLine.bid,productionLine.sid,productionLine.pid,productionLine.name) }/>
                         ))}
                  </View>
                  <View style={GlobalStyles.gridView.column}>
                       { this.state.prodlineList2.map((productionLine) => (
-                           <DashboardButton key= {productionLine.name} title={ productionLine.name}
+                           <DashboardButton key= {productionLine.pid} title={ productionLine.name}
                                  onPress= { () => this.handleButtonPress(productionLine.fid,productionLine.bid,productionLine.sid,productionLine.pid,productionLine.name) }/>
                   ))}
                    </View>
@@ -64,6 +65,7 @@ class ProductionLines extends Component{
 
 
   }
+  //  {this.setProdlineLists()}
 
   // { this.props.navigation.state.params.productionlines.map((productionLine) => (
   // <DashboardButton key= {productionLine.name} title={ productionLine.name}
@@ -72,7 +74,9 @@ class ProductionLines extends Component{
 
   setProdlineLists = () => {
         var prodlines = this.props.navigation.state.params.productionlines;
+        console.log(prodlines);
         var length = prodlines.length;
+        console.log(length);
         if(length % 2 == 0){
              for(var i = 0; i < length; i+=2) {
                  this.state.prodlineList1.push(prodlines[i]);
@@ -86,6 +90,9 @@ class ProductionLines extends Component{
            var lastbranch = prodlines[length - 1];
            this.state.prodlineList1.push(lastbranch);
      }
+     console.log(this.state.prodlineList1);
+     console.log(this.state.prodlineList2);
+
  }
 
 
